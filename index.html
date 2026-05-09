@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>大仁哥優質生活嚴選 - 2026 全方位運勢與消費測驗</title>
+    <title>大仁哥優質生活嚴選 - 2026 運勢與消費性格分析</title>
+    
+    <!-- ================= 加入社交媒體分享 (Open Graph) 標籤 ================= -->
+    <!-- 這是讓 LINE, Facebook 分享時會出現圖片跟標題的關鍵設定 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="大仁哥優質生活嚴選 - 2026 運勢與消費性格分析">
+    <meta property="og:description" content="透過測驗，了解您的消費性格與2026星座運勢。馬上測測看！">
+    <!-- 下方 content 裡面的網址是預覽圖，您可以換成任何您想顯示的圖片絕對網址 (.jpg / .png) -->
+    <meta property="og:image" content="https://lh3.googleusercontent.com/d/1H-ZNRBY1DyfAKpLNxQlf9ZMwx-j_bn1y=w1000 ">
+    <meta property="og:url" content="https://dajen-lifestyle.vercel.app/">
+    
+    <!-- 針對 Twitter (X) 等其他平台的支援 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="大仁哥優質生活嚴選 -2026 運勢與消費性格分析">
+    <meta name="twitter:description" content="透過測驗，了解您的消費性格與2026星座運勢。馬上測測看！">
+    <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1H-ZNRBY1DyfAKpLNxQlf9ZMwx-j_bn1y=w1000 ">
+    <!-- ===================================================================== -->
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -35,6 +51,10 @@
         body { 
             background-color: #f8fafc; 
             overflow-x: hidden; 
+            /* 調整 body，讓主要捲動區域明確限制，確保 scrollTo 正常運作 */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
             -ms-overflow-style: none; 
             scrollbar-width: none; 
         }
@@ -86,10 +106,10 @@
     </style>
 </head>
 
-<body class="text-gray-700 min-h-screen flex flex-col font-sans selection:bg-brand-200 selection:text-brand-700">
+<body class="text-gray-700 font-sans selection:bg-brand-200 selection:text-brand-700">
 
     <!-- Header / Progress Bar -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header class="bg-white shadow-sm sticky top-0 z-50 shrink-0">
         <div class="max-w-xl mx-auto px-4 py-3">
             <div class="flex justify-between items-center mb-2">
                 <div class="flex items-center gap-2">
@@ -113,15 +133,15 @@
         </div>
     </header>
 
-    <main class="flex-1 overflow-y-auto pb-24" id="main-scroll">
-        <div class="max-w-xl mx-auto px-4 py-6">
+    <main class="flex-1 overflow-y-auto pb-24 w-full" id="main-scroll">
+        <div class="max-w-xl mx-auto px-4 py-6 w-full">
             <form id="surveyForm" onsubmit="event.preventDefault();">
                 
                 <!-- STEP 1: Psychological Test -->
                 <section id="step1" class="step-content active" data-step="1">
                     <div class="flex flex-col items-center mb-8">
                         <div class="w-28 h-28 rounded-full border-4 border-white shadow-xl overflow-hidden mb-4 bg-brand-100 shrink-0">
-                            <img src="https://lh3.googleusercontent.com/d/1H-ZNRBY1DyfAKpLNxQlf9ZMwx-j_bn1y=w1000" onerror="this.src='https://placehold.co/200x200/8b5cf6/ffffff?text=大仁哥'" class="w-full h-full object-cover" alt="大仁哥">
+                            <img src="https://lh3.googleusercontent.com/d/1H-ZNRBY1DyfAKpLNxQlf9ZMwx-j_bn1y=w1000 " onerror="this.src='https://placehold.co/200x200/8b5cf6/ffffff?text=大仁哥'" class="w-full h-full object-cover" alt="大仁哥">
                         </div>
                         <div class="bg-white p-4 rounded-2xl shadow-md text-center w-full border border-gray-50">
                             <h2 class="text-xl font-bold text-brand-700">嗨！我是大仁哥 👋</h2>
@@ -476,7 +496,7 @@
     </main>
 
     <!-- Navigation Buttons -->
-    <div class="bg-white/80 backdrop-blur-md border-t border-gray-100 p-4 sticky bottom-0 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+    <div class="bg-white/80 backdrop-blur-md border-t border-gray-100 p-4 sticky bottom-0 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] shrink-0">
         <div class="max-w-xl mx-auto flex gap-3">
             <button type="button" id="prev-btn" onclick="changeStep(-1)" class="hidden flex-1 py-3.5 border-2 border-gray-200 bg-white hover:bg-gray-50 text-gray-600 rounded-xl font-bold transition-colors">上一步</button>
             <button type="button" id="next-btn" onclick="changeStep(1)" class="flex-1 py-3.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold transition-colors shadow-md">下一步</button>
@@ -495,7 +515,7 @@
                 <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl"></div>
                 
                 <div class="w-20 h-20 rounded-full border-4 border-white/30 mx-auto mb-4 overflow-hidden bg-white relative z-10 shadow-lg">
-                    <img src="https://lh3.googleusercontent.com/d/1H-ZNRBY1DyfAKpLNxQlf9ZMwx-j_bn1y=w1000" onerror="this.src='https://placehold.co/200x200/8b5cf6/ffffff?text=大仁哥'" class="w-full h-full object-cover">
+                    <img src="https://lh3.googleusercontent.com/d/1H-ZNRBY1DyfAKpLNxQlf9ZMwx-j_bn1y=w1000 " onerror="this.src='https://placehold.co/200x200/8b5cf6/ffffff?text=大仁哥'" class="w-full h-full object-cover">
                 </div>
                 <h3 class="text-2xl font-bold relative z-10 tracking-wide">測驗報告已完成！</h3>
             </div>
@@ -635,6 +655,10 @@
             if (currentStep > totalSteps) currentStep = totalSteps;
             
             updateUI();
+            
+            // 雙重置頂防護確保行動版順利滑動到最上面
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('main-scroll').scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function updateUI() {
@@ -657,17 +681,6 @@
             document.getElementById('prev-btn').classList.toggle('hidden', currentStep === 1);
             document.getElementById('next-btn').classList.toggle('hidden', currentStep === totalSteps);
             document.getElementById('submit-btn').classList.toggle('hidden', currentStep !== totalSteps);
-            
-            // 🔥 全面置頂防護設定：確保在各種瀏覽器與裝置都能完美回到頂部
-            // 1. 視窗本體置頂 (Mobile Browser 常見)
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            document.body.scrollTop = 0; 
-            document.documentElement.scrollTop = 0; 
-            // 2. 容器內部置頂 (如果發生內部捲動)
-            const mainContainer = document.getElementById('main-scroll');
-            if (mainContainer) {
-                mainContainer.scrollTo({ top: 0, behavior: 'smooth' });
-            }
         }
 
         function getZodiac(m, d) {
