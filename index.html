@@ -734,9 +734,10 @@
             const dateStr = document.getElementById('birth-date').value;
             const zodiac = getZodiac(dateStr);
             
-            // ================= 新增：將資料背景送到 Google Form =================
-            // 請將下方 URL 替換為您表單的真實 formResponse 網址
-            const formUrl = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeah4yXq_Cu8dQDKDTLi5qIIsN33vgvx0fdTJIXpc9MNLghmA/formResponse";
+            // ================= 背景送到 Google Form (選項 B：純收集精準名單) =================
+            // 【重要】請把下方網址換成您真正要接收資料的表單 URL (請不要包含 /u/0/)
+            const formUrl = "https://docs.google.com/forms/d/e/【請填入正確的長串ID】/formResponse";
+            
             const formData = new FormData();
 
             formData.append('entry.796438486', name); // 暱稱
@@ -798,24 +799,22 @@
             const fb3 = document.querySelector('input[name="fb3"]:checked');
             if (fb3) formData.append('entry.518593292', fb3.value);
 
-            // 使用 fetch 在背景送出資料 (no-cors 避免跨網域錯誤)
+            // 使用 fetch 在背景送出資料 (no-cors 隱藏跨網域錯誤)
             fetch(formUrl, {
                 method: 'POST',
                 mode: 'no-cors',
                 body: formData
             }).then(() => {
-                console.log("資料已成功送到 Google 表單！");
+                console.log("資料已成功送出指令");
             }).catch(err => {
                 console.error("傳送失敗：", err);
             });
-            // =====================================================================
+            // =================================================================================
 
-            // 取得當前月份動態生成報告
+            // 取得當前月份動態生成報告 (前端即時運算，不依賴 Google 表單)
             const curMonth = new Date().getMonth() + 1; 
             const particles = ["說真的", "悄悄告訴你", "哎呀", "老實講", "哇塞", "其實呢"];
             const p = particles[Math.floor(Math.random() * particles.length)];
-
-            // ... (下方保留原本生成報告與顯示 Modal 的程式碼) ...
 
             // Generate Horoscope
             const horoscopeText = `${p}！身為${zodiac}的 ${name}，在測驗中展現了獨特的特質。現在正好是 2026 年的 ${curMonth} 月份，整體星象顯示您的「生活能量」正處於高峰，這幾天如果有什麼想買卻還沒下手的東西，或許就是為您帶來好運的開端喔！✨`;
@@ -854,23 +853,3 @@
             // Show Modal
             document.getElementById('successModal').classList.remove('hidden');
         }
-
-        function closeModal() { 
-            document.getElementById('successModal').classList.add('hidden'); 
-            // Optional: reset form or redirect here if needed
-        }
-
-        // Initialize completion on load
-        window.onload = function() {
-            updateCompletion();
-            // Prevent enter key from submitting form implicitly
-            window.addEventListener('keydown', function(e) {
-                if(e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
-                    e.preventDefault();
-                    return false;
-                }
-            });
-        };
-    </script>
-</body>
-</html>
