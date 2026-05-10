@@ -727,18 +727,95 @@
             circle.style.strokeDashoffset = offset;
         }
 
-        function attemptSubmit() {
+       function attemptSubmit() {
             if (!validateStep(currentStep)) return;
 
             const name = document.getElementById('input-name').value.trim();
             const dateStr = document.getElementById('birth-date').value;
             const zodiac = getZodiac(dateStr);
             
-            // Get current month dynamically (e.g., 5 for May)
+            // ================= 新增：將資料背景送到 Google Form =================
+            // 請將下方 URL 替換為您表單的真實 formResponse 網址
+            const formUrl = "https://docs.google.com/forms/d/e/【請填入您的表單長串ID】/formResponse";
+            const formData = new FormData();
+
+            formData.append('entry.796438486', name); // 暱稱
+            formData.append('entry.1268540007', dateStr); // 出生月日
+
+            // 購物地點 (處理「其他」自填選項)
+            document.querySelectorAll('input[name="shopping"]:checked').forEach(el => {
+                let val = el.value === "__other__" ? el.nextElementSibling.value : el.value;
+                formData.append('entry.220983698', val);
+            });
+
+            // 旅行偏好
+            document.querySelectorAll('input[name="travelFreq"]:checked').forEach(el => {
+                formData.append('entry.1220826340', el.value);
+            });
+
+            // 旅行規劃方式 (處理「其他」自填選項)
+            document.querySelectorAll('input[name="travelPlan"]:checked').forEach(el => {
+                let val = el.value === "__other__" ? el.nextElementSibling.value : el.value;
+                formData.append('entry.2050629701', val);
+            });
+
+            // 保健需求
+            document.querySelectorAll('input[name="supplements"]:checked').forEach(el => {
+                formData.append('entry.1623911142', el.value);
+            });
+
+            // 體態管理
+            document.querySelectorAll('input[name="weight"]:checked').forEach(el => {
+                formData.append('entry.287972389', el.value);
+            });
+
+            // 肌膚屬性 (單選)
+            const skinType = document.querySelector('input[name="skinType"]:checked');
+            if (skinType) formData.append('entry.200464741', skinType.value);
+
+            // 護膚品
+            document.querySelectorAll('input[name="skincare"]:checked').forEach(el => {
+                formData.append('entry.2100580354', el.value);
+            });
+
+            // 彩妝需求
+            document.querySelectorAll('input[name="makeup"]:checked').forEach(el => {
+                formData.append('entry.821854769', el.value);
+            });
+
+            // 嬰幼兒用品
+            document.querySelectorAll('input[name="baby"]:checked').forEach(el => {
+                formData.append('entry.701717117', el.value);
+            });
+
+            // 想法回饋
+            const fb1 = document.querySelector('input[name="fb1"]:checked');
+            if (fb1) formData.append('entry.415166986', fb1.value);
+
+            const fb2 = document.querySelector('input[name="fb2"]:checked');
+            if (fb2) formData.append('entry.15298304', fb2.value);
+
+            const fb3 = document.querySelector('input[name="fb3"]:checked');
+            if (fb3) formData.append('entry.518593292', fb3.value);
+
+            // 使用 fetch 在背景送出資料 (no-cors 避免跨網域錯誤)
+            fetch(formUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(() => {
+                console.log("資料已成功送到 Google 表單！");
+            }).catch(err => {
+                console.error("傳送失敗：", err);
+            });
+            // =====================================================================
+
+            // 取得當前月份動態生成報告
             const curMonth = new Date().getMonth() + 1; 
-            
             const particles = ["說真的", "悄悄告訴你", "哎呀", "老實講", "哇塞", "其實呢"];
             const p = particles[Math.floor(Math.random() * particles.length)];
+
+            // ... (下方保留原本生成報告與顯示 Modal 的程式碼) ...
 
             // Generate Horoscope
             const horoscopeText = `${p}！身為${zodiac}的 ${name}，在測驗中展現了獨特的特質。現在正好是 2026 年的 ${curMonth} 月份，整體星象顯示您的「生活能量」正處於高峰，這幾天如果有什麼想買卻還沒下手的東西，或許就是為您帶來好運的開端喔！✨`;
