@@ -736,73 +736,58 @@
         }
 
         function attemptSubmit() {
-            if (!validateStep(currentStep)) return;
-
             const name = document.getElementById('input-name').value.trim();
             const m = document.getElementById('birth-month').value;
             const d = document.getElementById('birth-day').value;
             const zodiac = getZodiac(m, d);
             
-            // Get current month dynamically (e.g., 5 for May)
-            const curMonth = new Date().getMonth() + 1; 
+            const formData = new FormData();
             
-            const particles = ["說真的", "悄悄告訴你", "哎呀", "老實講", "哇塞", "其實呢"];
-            const p = particles[Math.floor(Math.random() * particles.length)];
-
-            // Generate Horoscope
-            const horoscopeText = `${p}！身為${zodiac}的 ${name}，在測驗中展現了獨特的特質。現在正好是 2026 年的 ${curMonth} 月份，整體星象顯示您的「生活能量」正處於高峰，這幾天如果有什麼想買卻還沒下手的東西，或許就是為您帶來好運的開端喔！✨`;
+            // --- Entry ID Mapping ---
+            const psyTextMap = { 'visual': '店內的燈光、裝潢與擺設 💡', 'auditory': '店內播放的音樂或人聲 🎵', 'olfactory': '店內散發的香氛或氣味 💨', 'price': '商品的價格標籤或優惠訊息 🏷️' };
+            formData.append("entry.1200243627", psyTextMap[userPsyChoice]);
+            formData.append("entry.796438486", name);
+            formData.append("entry.1268540007_month", m.padStart(2, '0'));
+            formData.append("entry.1268540007_day", d.padStart(2, '0'));
             
-            // Generate Psychology & Decision style text
-            const psyMap = { 
-                'visual': '【視覺系鑑賞家】您對生活美感與空間氛圍有極高要求，優質的包裝與設計最能打動您。', 
-                'auditory': '【感性共鳴者】您容易受環境氣氛與細膩服務打動，重視溝通時的溫度與誠意。', 
-                'olfactory': '【品味生活家】您擁有靈敏的感官，重視細節與質感，香氛與舒適度是您的生活必需品。', 
-                'price': '【精明理財家】您具備極強的邏輯與比價能力，擅長在海量資訊中發掘高 CP 值神物。' 
-            };
+            document.querySelectorAll('input[name="shopping"]:checked').forEach(el => formData.append("entry.220983698", el.value));
             
-            const decisionMap = {
-                'impulse': '購物時屬於「行動派」，看到喜歡的就想立刻擁有，容易被限量或特價吸引。',
-                'rational': '購物時屬於「理智派」，習慣做足功課，重視商品的實用性與他人真實評價。',
-                'social': '購物時屬於「隨和派」，重視親友的推薦，認為大家說好的東西一定不會太差。',
-                'patient': '購物時屬於「佛系派」，不急於一時，相信總會遇到最適合自己的商品或更好的價格。'
-            };
-
-            const psyText = (psyMap[userPsyChoice] || '') + ' ' + (decisionMap[userDecisionStyle] || '');
-
-            // Dynamic Advice based on health/beauty selections
-            let advice = `這個月適合嘗試一些提升生活質感的小物。不管是為了健康還是美麗，記得「選對的比選貴的重要」！若對群組的無壓力網購感興趣，大仁哥隨時為您服務。`;
+            const travelMap = { '國內': '🇹🇼 國內', '國外': '✈️ 國外', '一年2次': '✌️ 一年2次' };
+            document.querySelectorAll('input[name="travelFreq"]:checked').forEach(el => formData.append("entry.1220826340", travelMap[el.value] || el.value));
             
-            if (document.querySelector('input[name="supplements"][value="疲勞壓力"]:checked') || document.querySelector('input[name="supplements"][value="睡眠品質"]:checked')) {
-                advice = `大仁哥注意到您似乎有些疲勞或睡眠困擾。這個月請多留點時間給自己，投資一些能幫助放鬆的保健品或香氛小物，找回${zodiac}滿滿的活力喔！`;
-            } else if (document.querySelector('input[name="travelFreq"][value="每個月"]:checked')) {
-                advice = `熱愛旅行的您，2026年是適合向外探索的一年！出門在外，記得備妥輕便的保養品與常備保健品，大仁哥商城有許多適合旅行的好物等您發掘！`;
-            }
-
-            // Populate Modal
-            document.getElementById('result-horoscope').textContent = horoscopeText;
-            document.getElementById('result-psy').textContent = psyText;
-            document.getElementById('result-advice').textContent = advice;
-
-            // Show Modal
-            document.getElementById('successModal').classList.remove('hidden');
-        }
-
-        function closeModal() { 
-            document.getElementById('successModal').classList.add('hidden'); 
-            // Optional: reset form or redirect here if needed
-        }
-
-        // Initialize completion on load
-        window.onload = function() {
-            updateCompletion();
-            // Prevent enter key from submitting form implicitly
-            window.addEventListener('keydown', function(e) {
-                if(e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
-                    e.preventDefault();
-                    return false;
-                }
+            document.querySelectorAll('input[name="supplements"]:checked').forEach(el => {
+                const sMap = { '眼睛疲勞': '👀 眼睛疲勞', '睡眠品質': '💤 睡眠品質', '疲勞壓力': '🔋 疲勞壓力', '無需求': '🚫 目前無' };
+                formData.append("entry.1623911142", sMap[el.value] || el.value);
             });
-        };
+            
+            const decisionMap = { 'impulse': '立刻衝過去！🔥', 'rational': '先查評價比價 🔍', 'social': '問朋友意見 👥' };
+            formData.append("entry.2010388507", decisionMap[userDecisionStyle]);
+            
+            const skinMap = { '中性': '😊 中性', '油性': '💧 油性', '乾性': '🌵 乾性' };
+            formData.append("entry.200464741", skinMap[document.querySelector('input[name="skinType"]:checked').value]);
+            
+            formData.append("entry.15298304", document.querySelector('input[name="fb2"]:checked').value);
+            formData.append("entry.518593292", document.querySelector('input[name="fb3"]:checked').value);
+
+            const url = "https://docs.google.com/forms/d/e/1FAIpQLScIOzQf_o3dgnSEtmKN6bPongwTi99h4KTbBP6roU8XBi2S9Q/formResponse";
+            
+            document.getElementById('submit-btn').innerText = "分析中...";
+            fetch(url, { method: 'POST', mode: 'no-cors', body: formData }).then(() => {
+                document.getElementById('result-horoscope').textContent = `身為 ${zodiac} 的 ${name}，2026 年您的運勢強勁，適合大膽嘗試！`;
+                document.getElementById('result-psy').textContent = `您的決策風格為 ${userDecisionStyle === 'rational' ? '理智型' : '行動型'}，適合優質嚴選產品。`;
+                document.getElementById('successModal').classList.remove('hidden');
+                document.getElementById('submit-btn').innerText = "生成分析報告";
+            });
+        }
+
+        function closeModal() { document.getElementById('successModal').classList.add('hidden'); }
+        function updateCompletion() {
+            const count = document.querySelectorAll('input:checked').length + (document.getElementById('input-name').value ? 1 : 0);
+            const pct = Math.min(100, (count / 10) * 100);
+            document.getElementById('completion-text').textContent = `${Math.round(pct)}%`;
+            document.getElementById('completion-circle').style.strokeDashoffset = 62.83 - (pct/100)*62.83;
+        }
     </script>
 </body>
 </html>
+
