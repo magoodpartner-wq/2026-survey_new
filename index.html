@@ -744,126 +744,142 @@
     const d = document.getElementById('birth-day').value;
     const zodiac = getZodiac(m, d);
     
-    // 2. 建立 FormData 物件
+    // 2. 準備傳送資料
     const formData = new FormData();
     
-    // --- 心理測驗 (entry.1670080638) ---
+    // --- Step 1: 心理測驗 (entry.1200243627) ---
     const psyTextMap = {
         'visual': '店內的燈光、裝潢與擺設 💡',
         'auditory': '店內播放的音樂或人聲 🎵',
         'olfactory': '店內散發的香氛或氣味 💨',
         'price': '商品的價格標籤或優惠訊息 🏷️'
     };
-    formData.append("entry.1670080638", psyTextMap[userPsyChoice]);
+    formData.append("entry.1200243627", psyTextMap[userPsyChoice]);
 
-    // --- 您的暱稱 (entry.1978779100) ---
-    formData.append("entry.1978779100", name);
+    // --- Step 2: 暱稱 (entry.796438486) ---
+    formData.append("entry.796438486", name);
 
-    // --- 出生年月日 (entry.1778134321) ---
-    // 重要：日期格式必須拆分為 _year, _month, _day
-        formData.append("entry.1778134321_month", m.padStart(2, '0'));
-    formData.append("entry.1778134321_day", d.padStart(2, '0'));
+    // --- Step 2: 出生年月日 (entry.1268540007) ---
+    // Google 表單日期題型必須拆分為 _year, _month, _day
+    formData.append("entry.1268540007_year", "2026"); 
+    formData.append("entry.1268540007_month", m.padStart(2, '0'));
+    formData.append("entry.1268540007_day", d.padStart(2, '0'));
 
-    // --- 平常在哪裡購物 (entry.1393480236) ---
+    // --- Step 3: 購物地點 (entry.220983698) ---
     document.querySelectorAll('input[name="shopping"]:checked').forEach(el => {
         let val = el.value;
         if(val === '__other__') val = document.getElementById('other-shop').nextElementSibling.value;
-        formData.append("entry.1393480236", val);
+        formData.append("entry.220983698", val);
     });
 
-    // --- 旅行偏好 (entry.1709551831) ---
+    // --- Step 3: 旅行偏好 (entry.1220826340) ---
     const travelFreqMap = {
         '國內': '🇹🇼 國內', '國外': '✈️ 國外', '每個月': '📅 每個月', '一年2次': '✌️ 一年2次', '一年1次': '☝️ 一年1次'
     };
     document.querySelectorAll('input[name="travelFreq"]:checked').forEach(el => {
-        formData.append("entry.1709551831", travelFreqMap[el.value] || el.value);
+        formData.append("entry.1220826340", travelFreqMap[el.value] || el.value);
     });
 
-    // --- 旅行規劃方式 (entry.857654678) ---
+    // --- Step 3: 旅行規劃 (entry.2050629701) ---
     document.querySelectorAll('input[name="travelPlan"]:checked').forEach(el => {
         let val = el.value;
         if(val === '__other__') val = document.getElementById('other-travel-plan').nextElementSibling.value;
-        formData.append("entry.857654678", val);
+        formData.append("entry.2050629701", val);
     });
 
-    // --- 保健需求 (entry.1715755201) ---
+    // --- Step 4: 保健需求 (entry.1623911142) ---
     const suppMap = {
         '眼睛疲勞': '眼睛疲勞 (乾眼/老花)', '骨骼關節': '骨骼關節 (退化/疏鬆)', '三高問題': '三高問題 (血壓/血糖)',
         '睡眠品質': '睡眠品質 (失眠/淺眠)', '腸胃便秘': '腸道健康 (便秘/腹瀉)', '疲勞壓力': '疲勞壓力 (工時長/熬夜)',
         '基礎保健': '基礎維他命 (B群/綜維)', '無需求': '沒吃保健品 (目前無需求)'
     };
     document.querySelectorAll('input[name="supplements"]:checked').forEach(el => {
-        formData.append("entry.1715755201", suppMap[el.value] || el.value);
+        formData.append("entry.1623911142", suppMap[el.value] || el.value);
     });
 
-    // --- 體態管理需求 (entry.1208902557) ---
+    // --- Step 4: 體態管理 (entry.287972389) ---
     const weightMap = {
         '有運動習慣': '🏃 有運動習慣 (跑步、健身等)', '局部雕塑': '🏋️‍♀️ 想局部調整 (手臂、腹部、腿部)',
         '降體脂': '📉 想降低體脂 / 內臟脂肪', '代餐輔助': '🥤 需要低卡點心 / 代餐輔助', '都不需要': '🚫 都不需要'
     };
     document.querySelectorAll('input[name="weight"]:checked').forEach(el => {
-        formData.append("entry.1208902557", weightMap[el.value] || el.value);
+        formData.append("entry.287972389", weightMap[el.value] || el.value);
     });
 
-    // --- 消費決策風格 (entry.157166800) ---
+    // --- Step 5: 消費風格 (entry.2010388507) ---
     const decisionTextMap = {
         'impulse': '立刻衝過去看看！機會不等人 🔥', 'rational': '先查評價和比價再決定 🔍',
         'social': '問問朋友的意見最安心 👥', 'patient': '再等等，說不定有更好的折扣 🕐'
     };
-    formData.append("entry.157166800", decisionTextMap[userDecisionStyle]);
+    formData.append("entry.2010388507", decisionTextMap[userDecisionStyle]);
 
-    // --- 肌膚屬性 (entry.486964174) ---
+    // --- Step 6: 肌膚屬性 (entry.200464741) ---
     const skinMap = {'中性': '😊 中性', '油性': '💧 油性', '乾性': '🌵 乾性', '混合性': '🌗 混合性', '敏感性': '🪶 敏感性', '不知道': '❓ 不知道'};
-    const skinTypeVal = document.querySelector('input[name="skinType"]:checked').value;
-    formData.append("entry.486964174", skinMap[skinTypeVal] || skinTypeVal);
+    const skinVal = document.querySelector('input[name="skinType"]:checked').value;
+    formData.append("entry.200464741", skinMap[skinVal] || skinVal);
 
-    // --- 護膚品 (entry.1339988931) ---
-    const skincareMap = {'洗面乳':'洗面乳', '化妝水':'化妝水', '精華液':'精華液', '乳液':'乳液', '防曬':'防曬', '面膜':'面膜/眼膜', '沒保養': '🚫 沒保養習慣'};
+    // --- Step 6: 護膚品 (entry.2100580354) ---
+    const careMap = {'洗面乳':'洗面乳','化妝水':'化妝水','精華液':'精華液','乳液':'乳液','防曬':'防曬','面膜':'面膜/眼膜','沒保養':'🚫 沒保養習慣'};
     document.querySelectorAll('input[name="skincare"]:checked').forEach(el => {
-        formData.append("entry.1339988931", skincareMap[el.value] || el.value);
+        formData.append("entry.2100580354", careMap[el.value] || el.value);
     });
 
-    // --- 彩妝需求 (entry.81326540) ---
-    const makeupMap = {
-        '臉妝': '💄 臉妝 (粉底、腮紅等)', '眼妝': '👁️ 眼妝 (睫毛膏、眼線等)', '唇妝': '💋 唇妝 (口紅、護唇膏等)', '不化妝': '🚫 不化妝'
-    };
+    // --- Step 6: 彩妝需求 (entry.821854769) ---
+    const makeupMap = {'臉妝':'💄 臉妝 (粉底、腮紅等)','眼妝':'👁️ 眼妝 (睫毛膏、眼線等)','唇妝':'💋 唇妝 (口紅、護唇膏等)','不化妝':'🚫 不化妝'};
     document.querySelectorAll('input[name="makeup"]:checked').forEach(el => {
-        formData.append("entry.81326540", makeupMap[el.value] || el.value);
+        formData.append("entry.821854769", makeupMap[el.value] || el.value);
     });
 
-    // --- 嬰幼兒需求 (entry.1666924250) ---
-    const babyMap = {'奶粉/尿布': '🍼 奶粉尿布', '嬰兒沐浴': '🛁 嬰兒沐浴', '預防紅屁屁': '👶 預防紅屁屁', '嬰兒乳液': '🧴 嬰兒乳液', '都不需要': '🚫 都不需要'};
+    // --- Step 7: 嬰幼兒需求 (entry.701717117) ---
+    const babyMap = {'奶粉/尿布':'🍼 奶粉尿布','嬰兒沐浴':'🛁 嬰兒沐浴','預防紅屁屁':'👶 預防紅屁屁','嬰兒乳液':'🧴 嬰兒乳液','都不需要':'🚫 都不需要'};
     document.querySelectorAll('input[name="baby"]:checked').forEach(el => {
-        formData.append("entry.1666924250", babyMap[el.value] || el.value);
+        formData.append("entry.701717117", babyMap[el.value] || el.value);
     });
 
-    // --- 最後的想法 (entry.809740764, 500382233, 1221549638) ---
-    formData.append("entry.809740764", document.querySelector('input[name="fb1"]:checked').value);
-    formData.append("entry.500382233", document.querySelector('input[name="fb2"]:checked').value);
-    formData.append("entry.1221549638", document.querySelector('input[name="fb3"]:checked').value);
+    // --- Step 7: 最後的想法 (FB1~FB3) ---
+    formData.append("entry.415166986", document.querySelector('input[name="fb1"]:checked').value);
+    formData.append("entry.15298304", document.querySelector('input[name="fb2"]:checked').value);
+    formData.append("entry.518593292", document.querySelector('input[name="fb3"]:checked').value);
 
-    // 提交 URL
+    // 提交 URL (請確認此 ID 與你最新建立的表單一致)
     const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLScIOzQf_o3dgnSEtmKN6bPongwTi99h4KTbBP6roU8XBi2S9Q/formResponse";
 
-    // UI 反饋
+    // 介面更新
     const submitBtn = document.getElementById('submit-btn');
-    submitBtn.innerText = "生成分析報告中...";
+    submitBtn.innerText = "分析中，請稍候...";
     submitBtn.disabled = true;
 
-    // 傳送資料
+    // 背景傳送至 Google 表單
     fetch(formUrl, {
         method: 'POST',
         mode: 'no-cors',
         body: formData
     }).then(() => {
-        // 成功後顯示原本的分析報告邏輯
-        showReport(name, zodiac);
+        // 觸發生成報告
+        handleFinalResult(name, zodiac);
         submitBtn.innerText = "生成分析報告";
         submitBtn.disabled = false;
-    }).catch(error => {
-        console.error('Error!', error);
-        showReport(name, zodiac); // 即便傳送失敗也顯示結果給使用者
+    }).catch(err => {
+        console.error("Submission failed", err);
+        handleFinalResult(name, zodiac); // 失敗仍顯示結果，維持用戶體驗
     });
+}
+
+// 報告生成邏輯
+function handleFinalResult(name, zodiac) {
+    const curMonth = new Date().getMonth() + 1; 
+    const p = ["說真的", "悄悄告訴你", "老實講", "其實呢"][Math.floor(Math.random() * 4)];
+
+    const psyMap = { 
+        'visual': '【視覺系鑑賞家】您對生活美感與空間氛圍有極高要求，優質的包裝與設計最能打動您。', 
+        'auditory': '【感性共鳴者】您容易受環境氣氛與細膩服務打動，重視溝通時的溫度與誠意。', 
+        'olfactory': '【品味生活家】您擁有靈敏的感官，重視細節與質感，香氛與舒適度是您的生活必需品。', 
+        'price': '【精明理財家】您具備極強的邏輯與比價能力，擅長在海量資訊中發掘高 CP 值神物。' 
+    };
+    
+    document.getElementById('result-horoscope').textContent = `${p}！身為${zodiac}的 ${name}，在 2026 年 ${curMonth} 月份，您的生活能量正處於高峰，適合投資自己！✨`;
+    document.getElementById('result-psy').textContent = psyMap[userPsyChoice] || "";
+    document.getElementById('successModal').classList.remove('hidden');
 }
 
 // 抽離出的顯示報告函數 (讓代碼更整潔)
