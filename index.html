@@ -207,10 +207,8 @@
                         <div class="req-group" data-group="birthday">
                             <label class="block text-lg font-bold text-gray-800 mb-2">出生月日 <span class="text-red-500">*</span></label>
                             <div class="flex items-center gap-3">
-                                <input type="number" id="birth-month" min="1" max="12" placeholder="MM" class="w-24 px-3 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 focus:bg-white text-center text-xl font-bold outline-none focus:border-brand-500 transition-colors" oninput="handleAutoJump(this, 'birth-day')">
-                                <span class="text-gray-400 font-bold text-xl">/</span>
-                                <input type="number" id="birth-day" min="1" max="31" placeholder="DD" class="w-24 px-3 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 focus:bg-white text-center text-xl font-bold outline-none focus:border-brand-500 transition-colors" oninput="updateCompletion()">
-                                <span class="text-sm text-gray-400 ml-2">(用於計算星座)</span>
+                                <input type="text" id="birth-date" maxlength="4" placeholder="0314" inputmode="numeric" class="w-32 tracking-[0.2em] px-3 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 focus:bg-white text-center text-xl font-bold outline-none focus:border-brand-500 transition-colors" oninput="this.value=this.value.replace(/\D/g,''); updateCompletion();">
+                                <span class="text-sm text-gray-400 ml-2">(請輸入4位數字，例如：0314)</span>
                             </div>
                         </div>
                     </div>
@@ -583,15 +581,11 @@
             updateCompletion();
         }
 
-        function handleAutoJump(el, nextId) {
-            if (el.value.length >= 2) document.getElementById(nextId).focus();
-            updateCompletion();
-        }
-
         // Validate Date Helper
-        function validateDate(m, d) { 
-            const month = parseInt(m); 
-            const day = parseInt(d); 
+        function validateDate(dateStr) { 
+            if (!dateStr || dateStr.length !== 4) return false;
+            const month = parseInt(dateStr.substring(0, 2), 10); 
+            const day = parseInt(dateStr.substring(2, 4), 10); 
             if (isNaN(month) || isNaN(day) || month < 1 || month > 12) return false; 
             const daysInMonth = new Date(2026, month, 0).getDate(); 
             return day > 0 && day <= daysInMonth; 
@@ -604,10 +598,9 @@
             }
             if (step === 2) {
                 const name = document.getElementById('input-name').value.trim();
-                const m = document.getElementById('birth-month').value;
-                const d = document.getElementById('birth-day').value;
+                const dateStr = document.getElementById('birth-date').value;
                 if (!name) { showToast('請輸入您的暱稱！'); return false; }
-                if (!validateDate(m, d)) { showToast('請輸入正確的出生月份與日期喔！'); return false; }
+                if (!validateDate(dateStr)) { showToast('請輸入正確的4位數出生月日喔！(例如：0314)'); return false; }
             }
             if (step === 3) {
                 const shop = document.querySelectorAll('input[name="shopping"]:checked');
@@ -683,8 +676,8 @@
             document.getElementById('submit-btn').classList.toggle('hidden', currentStep !== totalSteps);
         }
 
-        function getZodiac(m, d) {
-            const date = parseInt(m) * 100 + parseInt(d);
+        function getZodiac(dateStr) {
+            const date = parseInt(dateStr, 10);
             if (date >= 321 && date <= 419) return "牡羊座";
             if (date >= 420 && date <= 520) return "金牛座";
             if (date >= 521 && date <= 620) return "雙子座";
@@ -709,9 +702,8 @@
             if (userPsyChoice) filled++;
             if (document.getElementById('input-name').value.trim()) filled++;
             
-            const m = document.getElementById('birth-month').value;
-            const d = document.getElementById('birth-day').value;
-            if (validateDate(m, d)) filled++;
+            const dateStr = document.getElementById('birth-date').value;
+            if (validateDate(dateStr)) filled++;
             
             if (document.querySelectorAll('input[name="shopping"]:checked').length > 0) filled++;
             if (document.querySelectorAll('input[name="travelFreq"]:checked').length > 0) filled++;
@@ -739,9 +731,8 @@
             if (!validateStep(currentStep)) return;
 
             const name = document.getElementById('input-name').value.trim();
-            const m = document.getElementById('birth-month').value;
-            const d = document.getElementById('birth-day').value;
-            const zodiac = getZodiac(m, d);
+            const dateStr = document.getElementById('birth-date').value;
+            const zodiac = getZodiac(dateStr);
             
             // Get current month dynamically (e.g., 5 for May)
             const curMonth = new Date().getMonth() + 1; 
@@ -806,4 +797,3 @@
     </script>
 </body>
 </html>
-
