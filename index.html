@@ -1221,15 +1221,17 @@
             updateUI();
         }
 
-        function storeDecisionStyle(value) {
-    userDecisionStyle = value;
-    // 新增這一行，將值同步到隱藏欄位以便傳送給 Google
-    document.getElementById('hidden-decision-style').value = value; 
-    autoSave();
-}
+        // 👉 1. 補回這段被遺漏的函式（給 STEP 1 潛意識測驗使用）
+        function storePsyResult(value) {
+            userPsyChoice = value;
+            autoSave();
+        }
 
+        // 👉 2. 刪除重複的，只保留這個「有同步隱藏欄位」的正確版本（給 STEP 5 決策風格使用）
         function storeDecisionStyle(value) {
             userDecisionStyle = value;
+            // 新增這一行，將值同步到隱藏欄位以便傳送給 Google
+            document.getElementById('hidden-decision-style').value = value; 
             autoSave();
         }
 
