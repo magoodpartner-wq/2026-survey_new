@@ -647,40 +647,58 @@
         function attemptSubmit() {
             if (!validateStep(currentStep)) return;
 
-            // 1. 取得資料並準備報告文字
+            // 1. 取得資料
             const name = document.getElementById('input-name').value.trim();
             const dateStr = document.getElementById('birth-date').value;
             const zodiac = getZodiac(dateStr);
             const curMonth = new Date().getMonth() + 1; 
-            
             const particles = ["說真的", "悄悄告訴你", "哎呀", "老實講", "哇塞", "其實呢"];
             const p = particles[Math.floor(Math.random() * particles.length)];
 
-            // 生成運勢報告 (略，與之前相同)
+            // 2. 定義分析描述表 (修正分析消失的問題)
+            const psyMap = { 
+                'visual': '【視覺系鑑賞家】您對生活美感與空間氛圍有極高要求，優質的包裝與設計最能打動您。', 
+                'auditory': '【感性共鳴者】您容易受環境氣氛與細膩服務打動，重視溝通時的溫度與誠意。', 
+                'olfactory': '【品味生活家】您擁有靈敏的感官，重視細節與質感，香氛與舒適度是您的生活必需品。', 
+                'price': '【精明理財家】您具備極強的邏輯與比價能力，擅長在海量資訊中發掘高 CP 值神物。' 
+            };
+            
+            const decisionMap = {
+                'impulse': '購物時屬於「行動派」，看到喜歡的就想立刻擁有，容易被限量或特價吸引。',
+                'rational': '購物時屬於「理智派」，習慣做足功課，重視商品的實用性與他人真實評價。',
+                'social': '購物時屬於「隨和派」，重視親友的推薦，認為大家說好的東西一定不會太差。',
+                'patient': '購物時屬於「佛系派」，不急於一時，相信總會遇到最適合自己的商品或更好的價格。'
+            };
+
+            // 3. 生成報告文字
             const horoscopeText = `${p}！身為${zodiac}的 ${name}，在測驗中展現了獨特的特質。現在正好是 2026 年的 ${curMonth} 月份，整體星象顯示您的「生活能量」正處於高峰，這幾天如果有什麼想買卻還沒下手的東西，或許就是為您帶來好運的開端喔！✨`;
-            
-            // ... (psyMap 和 decisionMap 的計算邏輯請保留在原本位置) ...
+            const psyText = (psyMap[userPsyChoice] || '感謝參與測驗！') + ' ' + (decisionMap[userDecisionStyle] || '');
 
+            let advice = `這個月適合嘗試一些提升生活質感的小物。不管是為了健康還是美麗，記得「選對的比選貴的重要」！`;
+            if (document.querySelector('input[name="entry.1623911142"][value="疲勞壓力"]:checked') || document.querySelector('input[name="entry.1623911142"][value="睡眠品質"]:checked')) {
+                advice = `大仁哥注意到您似乎有些疲勞或睡眠困擾。這個月請多留點時間給自己，找回${zodiac}滿滿的活力喔！`;
+            }
+
+            // 4. 填入彈窗內容
             document.getElementById('result-horoscope').textContent = horoscopeText;
-            document.getElementById('result-psy').textContent = (typeof psyMap !== 'undefined' ? (psyMap[userPsyChoice] || '') : '') + ' ' + (typeof decisionMap !== 'undefined' ? (decisionMap[userDecisionStyle] || '') : '');
-            document.getElementById('result-advice').textContent = "感謝您的填寫！大仁哥會根據您的需求為您尋找最適合的好物。";
+            document.getElementById('result-psy').textContent = psyText;
+            document.getElementById('result-advice').textContent = advice;
 
-            // 2. 【核心修正】執行提交
-            // 將 submitted 設為 true，這樣 iframe 載入後才會觸發 showSuccessModal
+            // 5. 【關鍵修正】先提交資料，延遲顯示 Modal，不立刻重設表單
             submitted = true; 
+            document.getElementById('surveyForm').submit();
             
-            // 為了除錯，我們將 target 暫時改為 _blank (開新分頁)
-            // 如果開新分頁後 Google 顯示「已收到回覆」，就代表資料沒問題！
-            // 如果顯示錯誤，你就能看到是哪個欄位有問題。
-            const theForm = document.getElementById('surveyForm');
-            
-            // 如果你想看錯誤訊息，把下面這行註解拿掉
-            
+            // 延遲 0.5 秒再顯示結果彈窗，確保資料已經發出
+            setTimeout(() => {
+                document.getElementById('successModal').classList.remove('hidden');
+            }, 500);
+        }
 
-            theForm.submit();
-            
-            // 為了不讓使用者等 Google 表單轉圈，我們直接顯示結果
-            showSuccessModal();
+        // 修改成功彈窗函式，不要立刻 reset 表單
+        function showSuccessModal() {
+            // 這個函式現在由 iframe 的 onload 觸發
+            // 我們把表單重設的動作拿掉，確保資料傳輸安全
+            console.log("資料已成功傳送到 Google 表單");
         }
 
         // 當 iframe 載入完畢（代表 Google 表單已經接收成功），就會呼叫這個函式
