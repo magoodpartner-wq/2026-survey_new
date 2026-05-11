@@ -240,9 +240,9 @@
                 method="POST" target="hidden_iframe" onsubmit="submitted=true;">
 
                 <!-- Google Form Verification Tokens -->
-                <input type="hidden" name="fvv" value="1">
-                <input type="hidden" name="fbzx" value="3332142635860987282">
-                <input type="hidden" name="pageHistory" value="0">
+                
+                
+                
 
                 <!-- STEP 1: Psychological Test -->
                 <div id="step1" class="step-content active">
@@ -553,6 +553,7 @@
                         <div class="flex items-center justify-center w-14 h-14 bg-orange-100 rounded-full text-orange-600 shrink-0">
                             <i class="fa-solid fa-brain text-xl"></i>
                         </div>
+                        <input type="hidden" name="entry.183142830" id="hidden-decision-style">
                         <div>
                             <h2 class="text-xl font-bold text-brand-700">消費決策風格</h2>
                             <p class="text-gray-600 text-sm">測出您的購物決策類型！</p>
@@ -566,28 +567,28 @@
                         </p>
                         <div class="space-y-3" id="decision-style-group">
                             <label class="cursor-pointer group block">
-                                <input type="radio" name="decisionStyle" value="impulse" class="option-input" onchange="storeDecisionStyle('impulse')">
+                                <input type="radio" name="entry.183142830" value="impulse" class="option-input" onchange="storeDecisionStyle('impulse')">
                                 <div class="option-card p-4 rounded-xl border border-gray-200 bg-white flex items-center gap-4 transition-all hover:bg-gray-50">
                                     <div class="icon-box w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 shrink-0 text-lg"><i class="fa-solid fa-fire"></i></div>
                                     <span class="text-base font-medium">立刻衝過去看看！機會不等人</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer group block">
-                                <input type="radio" name="decisionStyle" value="rational" class="option-input" onchange="storeDecisionStyle('rational')">
+                                <input type="radio" name="entry.183142830" value="rational" class="option-input" onchange="storeDecisionStyle('rational')">
                                 <div class="option-card p-4 rounded-xl border border-gray-200 bg-white flex items-center gap-4 transition-all hover:bg-gray-50">
                                     <div class="icon-box w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shrink-0 text-lg"><i class="fa-solid fa-magnifying-glass"></i></div>
                                     <span class="text-base font-medium">先查評價和比價再決定</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer group block">
-                                <input type="radio" name="decisionStyle" value="social" class="option-input" onchange="storeDecisionStyle('social')">
+                                <input type="radio" name="entry.183142830" value="social" class="option-input" onchange="storeDecisionStyle('social')">
                                 <div class="option-card p-4 rounded-xl border border-gray-200 bg-white flex items-center gap-4 transition-all hover:bg-gray-50">
                                     <div class="icon-box w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0 text-lg"><i class="fa-solid fa-users"></i></div>
                                     <span class="text-base font-medium">問問朋友的意見最安心</span>
                                 </div>
                             </label>
                             <label class="cursor-pointer group block">
-                                <input type="radio" name="decisionStyle" value="patient" class="option-input" onchange="storeDecisionStyle('patient')">
+                                <input type="radio" name="entry.183142830" value="patient" class="option-input" onchange="storeDecisionStyle('patient')">
                                 <div class="option-card p-4 rounded-xl border border-gray-200 bg-white flex items-center gap-4 transition-all hover:bg-gray-50">
                                     <div class="icon-box w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shrink-0 text-lg"><i class="fa-solid fa-clock"></i></div>
                                     <span class="text-base font-medium">再等等，說不定有更好的</span>
@@ -1220,10 +1221,12 @@
             updateUI();
         }
 
-        function storePsyResult(value) {
-            userPsyChoice = value;
-            autoSave();
-        }
+        function storeDecisionStyle(value) {
+    userDecisionStyle = value;
+    // 新增這一行，將值同步到隱藏欄位以便傳送給 Google
+    document.getElementById('hidden-decision-style').value = value; 
+    autoSave();
+}
 
         function storeDecisionStyle(value) {
             userDecisionStyle = value;
