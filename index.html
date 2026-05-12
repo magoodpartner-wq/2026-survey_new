@@ -860,7 +860,15 @@
                     updateCompletion();
                 }
             });
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
             document.getElementById('surveyForm').addEventListener('input', function (e) {
                 if (e.target.matches('input[type="text"], input[type="tel"]')) {
                     debouncedAutoSave();
@@ -875,7 +883,15 @@
                 }
             });
         });
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         // ============ 自動儲存功能 ============
         function autoSave() {
             try {
@@ -971,7 +987,15 @@
                 setTimeout(() => toast.remove(), 300);
             }, 800);
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function updateCompletion() {
             const allInputs = document.querySelectorAll('input:not([type="hidden"]), select, textarea');
             let totalFields = 0;
@@ -1005,7 +1029,15 @@
             const offset = circumference - (clampedPercentage / 100) * circumference;
             circle.style.strokeDashoffset = offset;
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function updateUI() {
             const progress = (currentStep / totalSteps) * 100;
             document.getElementById('progress-bar').style.width = `${progress}%`;
@@ -1036,7 +1068,15 @@
 
             document.getElementById('main-scroll').scrollTo({ top: 0, behavior: 'smooth' });
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function handleMMDDInput(el) {
     let val = el.value.replace(/\D/g, '');
     el.value = val;
@@ -1075,7 +1115,15 @@
 }
             updateCompletion();
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function validateStep(step) {
             if (step === 1) {
                 if (!userPsyChoice) {
@@ -1178,7 +1226,15 @@
             }
             return true;
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function validateFinalStep() {
             const feedbackGroups = [
                 { name: 'entry.1155724814', id: 'feedback-1' },
@@ -1210,7 +1266,15 @@
             }
             return isValid;
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function changeStep(direction) {
             if (direction === 1 && !validateStep(currentStep)) return;
 
@@ -1240,7 +1304,15 @@
             document.getElementById('hidden-decision-style').value = value; 
             autoSave();
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function attemptSubmit() {
             if (isSubmitting) {
                 showToast('正在提交中，請稍候...', 'info');
@@ -1293,7 +1365,15 @@ setTimeout(() => {
                 }, 100);
             });
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         // ============ 新增：十二星座與 2026 流年運勢邏輯 ============
         function getZodiacInfo(month, day) {
             const m = parseInt(month);
@@ -1314,7 +1394,15 @@ setTimeout(() => {
             
             return null;
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function getZodiacHoroscope2026(zodiacId) {
             const horoscopes = {
                 'aries': "2026 年對牡羊座來說是「資源豐收年」！木星的加持讓您的財運看漲，但也容易有大筆開銷。在購物上，適合投資有助於事業發展或能提升個人質感的單品，切忌盲目跟風。",
@@ -1340,7 +1428,15 @@ setTimeout(() => {
             if (style === 'patient')  return `🛒 融合建議：充滿耐心的${zodiacName}，您等待的好價格終會出現。但若是遇到真心喜歡的「限量體驗」，今年不妨大膽出手一次！`;
             return '';
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function getPsyText(type) {
             const results = {
                 'visual': '您是「視覺系鑑賞家」！✨\n\n對美感有極高要求，喜歡有質感、包裝精美的商品。在 2026 年，不妨多添購一些能提升居家氛圍的裝飾或高顏值家電，會讓您心情大好。',
@@ -1351,7 +1447,15 @@ setTimeout(() => {
             };
             return results[type] || results[''];
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function getDecisionStyleText(style) {
             const styles = {
                 'impulse': {
@@ -1377,7 +1481,15 @@ setTimeout(() => {
             };
             return styles[style] || { title: '', desc: '', advice: '' };
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function generateResults() {
             // 潛意識分析
             const psyText = getPsyText(userPsyChoice);
@@ -1422,11 +1534,27 @@ setTimeout(() => {
                 zodiacSection.style.display = 'none';
             }
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function handleFormSubmit() {
             generateResults();
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function showSuccessModal() {
             if (!isSubmitting) return;
 
@@ -1450,12 +1578,29 @@ setTimeout(() => {
             updateUI();
             updateCompletion();
         }
+let userPsyChoice = '';
 
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
         function closeModal() {
             document.getElementById('successModal').classList.add('hidden');
             showToast('感謝您的填寫！期待再次為您服務 😊', 'success');
         }
+let userPsyChoice = '';
+
+function storePsyResult(value) {
+    userPsyChoice = value;
+
+    console.log('STEP1 選擇:', value);
+
+    autoSave();
+}
     </script>
 </body>
 
-</html>
+</html>script
