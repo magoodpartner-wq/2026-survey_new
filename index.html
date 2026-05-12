@@ -1125,12 +1125,19 @@ function storePsyResult(value) {
     autoSave();
 }
         function validateStep(step) {
-            if (step === 1) {
-                if (!userPsyChoice) {
-                    showToast('請選擇一個選項', 'warning');
-                    return false;
-                }
-            }
+            if (currentStep === 1 && direction === 1) {
+
+    const selected = document.querySelector('input[name="psyChoice"]:checked');
+
+    if (!selected) {
+
+        showToast('請先選擇一個答案');
+
+        return;
+    }
+
+    userPsyChoice = selected.value;
+}
             if (step === 2) {
                 const nameInput = document.getElementById('input-name');
                 let isValid = true;
