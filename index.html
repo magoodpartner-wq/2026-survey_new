@@ -1038,33 +1038,41 @@
         }
 
         function handleMMDDInput(el) {
-            // 只允許數字
-            let val = el.value.replace(/\D/g, '');
-            el.value = val;
+    let val = el.value.replace(/\D/g, '');
+    el.value = val;
 
-            const hiddenDate = document.getElementById('input-birthday');
+    if (val.length === 4) {
+        const m = parseInt(val.substring(0, 2));
+        const d = parseInt(val.substring(2, 4));
 
-            if (val.length === 4) {
-                const m = parseInt(val.substring(0, 2));
-                const d = parseInt(val.substring(2, 4));
-                
-                // 簡易日期檢查 (使用 2000 年做基準因為是閏年，包含 0229)
-                const tempDate = new Date(2000, m - 1, d);
-                const isValidDate = tempDate.getFullYear() === 2000 && tempDate.getMonth() === m - 1 && tempDate.getDate() === d;
+        const tempDate = new Date(2000, m - 1, d);
 
-                if (!isValidDate) {
-                    showToast('請輸入正確的月日 (例如 5月20日 填寫 0520)', 'error');
-                    el.classList.add('ring-2', 'ring-red-500', 'border-red-500', 'error-shake');
-                    setTimeout(() => el.classList.remove('ring-2', 'ring-red-500', 'border-red-500', 'error-shake'), 1000);
-                    hiddenDate.value = '';
-                } else {
-                    // Google Forms 日期欄位通常需要 YYYY-MM-DD，這裡固定給 2000 年以順利提交
-                    hiddenDate.value = `2000-${val.substring(0, 2)}-${val.substring(2, 4)}`;
-                    el.classList.remove('ring-2', 'ring-red-500', 'border-red-500');
-                }
-            } else {
-                hiddenDate.value = '';
-            }
+        const isValidDate =
+            tempDate.getFullYear() === 2000 &&
+            tempDate.getMonth() === m - 1 &&
+            tempDate.getDate() === d;
+
+        if (!isValidDate) {
+            showToast('請輸入正確生日格式，例如 0520', 'error');
+
+            el.classList.add(
+                'ring-2',
+                'ring-red-500',
+                'border-red-500'
+            );
+
+            setTimeout(() => {
+                el.classList.remove(
+                    'ring-2',
+                    'ring-red-500',
+                    'border-red-500'
+                );
+            }, 1000);
+        }
+    }
+
+    updateCompletion();
+}
             updateCompletion();
         }
 
@@ -1088,9 +1096,7 @@
                 }
 
                 const mmddInput = document.getElementById('birth-mmdd');
-                const hiddenDate = document.getElementById('input-birthday');
-
-                if (mmddInput.value.length !== 4 || !hiddenDate.value) {
+                if (mmddInput.value.length !== 4) {
                     mmddInput.classList.add('ring-2', 'ring-red-500', 'border-red-500', 'error-shake');
                     setTimeout(() => mmddInput.classList.remove('ring-2', 'ring-red-500', 'border-red-500', 'error-shake'), 1000);
                     showToast('請完整輸入 4 位數出生月日 (例如 0520)', 'warning');
@@ -1270,16 +1276,12 @@
             // 恢復被 disabled 的欄位，以免影響下次送出
             emptyInputs.forEach(input => input.disabled = false);
 
-            fetch(form.action, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: urlParams.toString()
-            }).then(() => {
-                showSuccessModal();
-            }).catch(err => {
+            submitted = true;
+form.submit();
+
+setTimeout(() => {
+    showSuccessModal();
+}, 1500);.catch(err => {
                 console.error('Submit error:', err);
                 // 備用方案：如果 fetch 失敗，使用傳統隱藏 iframe 方式送出
                 setTimeout(() => {
