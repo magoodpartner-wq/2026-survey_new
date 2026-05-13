@@ -541,7 +541,6 @@
                 
                 if (GOOGLE_FORM_CONFIG.entryIds[qKey] && GOOGLE_FORM_CONFIG.entryIds[qKey] !== "entry.填入數字") {
                     input.name = GOOGLE_FORM_CONFIG.entryIds[qKey];
-                    // （已移除舊版產生干擾的 sentinel 邏輯，避免造成 Google Form 傳遞失敗）
                 } else if (qKey.endsWith('_other')) {
                     const baseKey = qKey.replace('_other', '');
                     if (GOOGLE_FORM_CONFIG.entryIds[baseKey] && GOOGLE_FORM_CONFIG.entryIds[baseKey] !== "entry.填入數字") {
@@ -675,7 +674,8 @@
                     setTimeout(() => el.classList.remove('ring-2', 'ring-red-500', 'border-red-500', 'error-shake'), 1000);
                     hiddenDate.value = '';
                 } else {
-                    hiddenDate.value = `2000-${val.substring(0, 2)}-${val.substring(2, 4)}`;
+                    // 🌟 修正重點在此：我們直接傳送 0314 這個數值，不再轉換成 2000-03-14 避免被 Google 阻擋
+                    hiddenDate.value = val;
                     el.classList.remove('ring-2', 'ring-red-500', 'border-red-500');
                 }
             } else { hiddenDate.value = ''; }
@@ -758,30 +758,46 @@
 
             isSubmitting = true;
             const btn = document.getElementById('submit-btn');
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>分析中...';
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>傳送中...';
             btn.disabled = true;
-
-            const emptyInputs = [];
-            document.querySelectorAll('input[type="text"][name^="entry."]').forEach(input => {
-                if (!input.value.trim()) { input.disabled = true; emptyInputs.push(input); }
-            });
 
             generateResults(); 
 
-            // 🌟 100% 成功率防範機制：捨棄 fetch 跨域問題，直接將整個 Form POST 到隱藏 iframe
+            // 🌟 最強大的提交方案：Fetch (AJAX) 確保無縫傳送，排除 Iframe 的干擾
             const form = document.getElementById('surveyForm');
-            submitted = true;
-            form.submit();
+            const formData = new FormData(form);
+            const urlParams = new URLSearchParams();
+            
+            for (const pair of formData.entries()) {
+                // 剔除空值避免 Google 判斷異常
+                if (pair[1].trim() !== '') {
+                    urlParams.append(pair[0], pair[1]);
+                }
+            }
 
-            // 解除禁用避免畫面卡住
-            setTimeout(() => {
-                emptyInputs.forEach(input => input.disabled = false);
-            }, 100);
+            fetch(GOOGLE_FORM_CONFIG.actionUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: urlParams.toString()
+            })
+            .then(() => {
+                showSuccessModal();
+            })
+            .catch(err => {
+                console.error('Submit error:', err);
+                // 極少數情況的最後備用方案
+                submitted = true;
+                form.submit();
+                setTimeout(() => showSuccessModal(), 1500);
+            });
 
-            // 雙重防護機制：若 iframe 的 onload 遭到瀏覽器封鎖，確保 1.5 秒後仍會正常顯示算命結果。
+            // 絕對保障：確保介面不會卡住
             setTimeout(() => {
                 if (isSubmitting) showSuccessModal();
-            }, 1500);
+            }, 3000);
         }
 
         function showSuccessModal() {
