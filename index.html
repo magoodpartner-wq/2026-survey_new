@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大仁哥優質生活嚴選 - 專屬購物問卷 | 2026 運勢與消費性格分析</title>
+    <title>大仁哥優質生活嚴選 - 購物小習慣問卷 😊</title>
 
-    <meta name="description" content="嗨！我是大仁哥 👋歡迎來到大仁哥優質生活嚴選！讓我為您測出運勢與消費性格分析吧！">
+    <meta name="description" content="嗨！我是大仁哥 👋 3分鐘小問卷，讓我之後分享更適合你的好物與資訊，也不亂推你不需要的東西。">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +36,6 @@
         body::-webkit-scrollbar { display: none; }
         html { scroll-behavior: smooth; }
         
-        /* 解決亂跳問題：將隱藏的 checkbox/radio 改成標準的視覺隱藏，避免破壞佈局導致 Focus 時捲軸跳動 */
         .option-input { 
             position: absolute; 
             width: 1px; 
@@ -74,7 +73,7 @@
             <div class="flex justify-between items-center mb-2">
                 <span class="text-xs font-semibold text-brand-600 tracking-wider">大仁哥優質生活嚴選</span>
                 <div class="flex items-center gap-3">
-                    <span class="text-xs font-medium text-gray-400" id="step-indicator">Step 1/7</span>
+                    <span class="text-xs font-medium text-gray-400" id="step-indicator">Step 1/6</span>
                     <div class="flex items-center gap-1">
                         <svg width="24" height="24" class="transform -rotate-90">
                             <circle cx="12" cy="12" r="10" stroke="#e5e7eb" stroke-width="2" fill="none" />
@@ -85,7 +84,7 @@
                 </div>
             </div>
             <div class="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
-                <div id="progress-bar" class="h-full bg-brand-600 rounded-full" style="width: 14%" role="progressbar"></div>
+                <div id="progress-bar" class="h-full bg-brand-600 rounded-full" style="width: 16%" role="progressbar"></div>
             </div>
         </div>
     </div>
@@ -98,322 +97,225 @@
 
             <form id="surveyForm" action="" method="POST" target="hidden_iframe">
                 
+                <!-- Step 1: 基本資料 -->
                 <div id="step1" class="step-content active">
                     <div class="flex flex-col items-center mb-8 relative">
                         <div class="w-32 h-32 rounded-full border-4 border-white shadow-xl overflow-hidden mb-4 relative z-10 bg-brand-100">
                             <img src="https://lh3.googleusercontent.com/d/15Yy3j8CewSBciaLxyjN7x6S1yaUZw0aM=w1000" alt="大仁哥" class="w-full h-full object-cover object-top">
                         </div>
                         <div class="bg-white p-4 rounded-2xl shadow-md border border-gray-100 text-center relative -mt-8 pt-10 w-full animate-fade-in">
-                            <h2 class="text-xl font-bold text-brand-700 mb-1">嗨！我是大仁哥👋</h2>
-                            <p class="text-gray-600 text-sm">歡迎來到行動商城！<br>讓我用 3 分鐘，幫您測出 <span class="text-brand-600 font-bold">2026 星盤流年運勢</span> 吧！</p>
+                            <h2 class="text-xl font-bold text-brand-700 mb-1">嗨！我是大仁哥 👋</h2>
+                            <p class="text-gray-600 text-sm mb-2">3 分鐘小問卷，讓我之後分享更適合你的好物與資訊，也不亂推你不需要的東西。<br>未來有合適資訊時可以優先邀請你！</p>
                         </div>
                     </div>
 
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
-                        <p class="text-xl font-bold text-brand-700 mb-6 text-center leading-relaxed">
-                            <span class="border-b-4 border-brand-200">當您第一次走進一家沒去過的店，<br>最先吸引您注意的是？</span>
-                        </p>
-                        <div class="space-y-3">
-                            <label class="cursor-pointer group block">
-                                <input type="radio" data-q="psyChoice" value="店內的燈光、裝潢與擺設" class="option-input" onchange="storePsyResult('visual')">
-                                <div class="option-card p-4 rounded-xl border border-gray-200 bg-white flex items-center gap-4">
-                                    <div class="icon-box w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 text-lg"><i class="fa-solid fa-lightbulb"></i></div>
-                                    <span class="text-base font-medium">店內的燈光、裝潢與擺設</span>
-                                </div>
-                            </label>
-                            <label class="cursor-pointer group block">
-                                <input type="radio" data-q="psyChoice" value="店內播放的音樂或人聲" class="option-input" onchange="storePsyResult('auditory')">
-                                <div class="option-card p-4 rounded-xl border border-gray-200 bg-white flex items-center gap-4">
-                                    <div class="icon-box w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg"><i class="fa-solid fa-music"></i></div>
-                                    <span class="text-base font-medium">店內播放的音樂或人聲</span>
-                                </div>
-                            </label>
-                            <label class="cursor-pointer group block">
-                                <input type="radio" data-q="psyChoice" value="店內散發的香氛或氣味" class="option-input" onchange="storePsyResult('olfactory')">
-                                <div class="option-card p-4 rounded-xl border border-gray-200 bg-white flex items-center gap-4">
-                                    <div class="icon-box w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 text-lg"><i class="fa-solid fa-wind"></i></div>
-                                    <span class="text-base font-medium">店內散發的香氛或氣味</span>
-                                </div>
-                            </label>
-                            <label class="cursor-pointer group block">
-                                <input type="radio" data-q="psyChoice" value="商品的價格標籤或優惠訊息" class="option-input" onchange="storePsyResult('price')">
-                                <div class="option-card p-4 rounded-xl border border-gray-200 bg-white flex items-center gap-4">
-                                    <div class="icon-box w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-lg"><i class="fa-solid fa-tags"></i></div>
-                                    <span class="text-base font-medium">商品的價格標籤或優惠訊息</span>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="step2" class="step-content">
-                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">基本資料</h3>
+                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">第一區｜先認識一下你</h3>
                     <div class="space-y-6 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                         <div class="relative">
-                            <label class="block text-lg font-bold text-brand-700 mb-2">您的名字 / Line 暱稱 <span class="text-red-500">*</span></label>
-                            <input type="text" data-q="name" id="input-name" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 outline-none text-lg" placeholder="例：大仁哥">
+                            <label class="block text-lg font-bold text-brand-700 mb-2">1. 你的名字或 LINE 顯示名稱是？ <span class="text-red-500">*</span></label>
+                            <p class="text-sm text-gray-500 mb-3">先讓我知道是誰來玩這份小問卷 😊</p>
+                            <input type="text" data-q="name" id="input-name" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 outline-none text-lg focus:border-brand-500 transition-colors" placeholder="例：大仁哥">
                         </div>
-                        <div class="relative">
-                            <label class="block text-lg font-bold text-brand-700 mb-2">您的出生月日 <span class="text-red-500">*</span></label>
-                            <input type="tel" id="birth-mmdd" maxlength="4" placeholder="例如: 0520" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 text-center tracking-[0.5em] text-2xl font-mono" oninput="handleMMDDInput(this)">
-                            <input type="hidden" data-q="birthday" id="input-birthday">
-                            <p class="text-xs text-gray-500 mt-2">請輸入 4 位數字，例如 5 月 20 日請填入 0520</p>
+                        <div class="relative pt-4 border-t border-gray-100">
+                            <label class="block text-lg font-bold text-brand-700 mb-2">2. 你的生日是幾月幾號呢？ <span class="text-red-500">*</span></label>
+                            <p class="text-sm text-gray-500 mb-3">之後若有小驚喜或壽星祝福，我比較不會漏掉你 😊</p>
+                            <input type="tel" id="birth-mmdd" maxlength="4" placeholder="例如: 0314" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 text-center tracking-[0.5em] text-2xl font-mono focus:border-brand-500 transition-colors" oninput="handleMMDDInput(this)">
+                            
+                            <!-- 🌟 核心修正區：將日期拆分為 Month 和 Day 兩個隱藏欄位，符合 Google 表單格式 -->
+                            <input type="hidden" name="entry.1956079513_month" id="input-birth-month">
+                            <input type="hidden" name="entry.1956079513_day" id="input-birth-day">
+                            
+                            <p class="text-xs text-gray-400 mt-2 text-center">請輸入 4 位數字，例如 3 月 14 日請填入 0314</p>
                         </div>
                     </div>
                 </div>
 
-                <div id="step3" class="step-content">
-                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">您的生活風格</h3>
+                <!-- Step 2: 購物小習慣 -->
+                <div id="step2" class="step-content">
+                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">第二區｜你的生活購物小習慣</h3>
                     
                     <div class="mb-10">
-                        <p class="text-lg font-bold text-brand-700 mb-4">平常都在哪裡購物？ <span class="text-red-500">*</span></p>
-                        <div class="grid grid-cols-2 gap-3 mb-4">
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shopping" value="網購" class="option-input"><div class="option-card p-4 rounded-xl border flex flex-col items-center justify-center text-center h-28"><div class="icon-box w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-2"><i class="fa-solid fa-mobile-screen"></i></div><span class="font-bold">網購</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shopping" value="超市" class="option-input"><div class="option-card p-4 rounded-xl border flex flex-col items-center justify-center text-center h-28"><div class="icon-box w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-2"><i class="fa-solid fa-cart-shopping"></i></div><span class="font-bold">超市</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shopping" value="外食族" class="option-input"><div class="option-card p-4 rounded-xl border flex flex-col items-center justify-center text-center h-28"><div class="icon-box w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-2"><i class="fa-solid fa-utensils"></i></div><span class="font-bold">外食族</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shopping" value="家中會下廚" class="option-input"><div class="option-card p-4 rounded-xl border flex flex-col items-center justify-center text-center h-28"><div class="icon-box w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-2"><i class="fa-solid fa-fire-burner"></i></div><span class="font-bold">會下廚</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shopping" value="傳統市場" class="option-input"><div class="option-card p-4 rounded-xl border flex flex-col items-center justify-center text-center h-28"><div class="icon-box w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-2"><i class="fa-solid fa-basket-shopping"></i></div><span class="font-bold">傳統市場</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shopping" value="產地宅配" class="option-input"><div class="option-card p-4 rounded-xl border flex flex-col items-center justify-center text-center h-28"><div class="icon-box w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-2"><i class="fa-solid fa-truck-fast"></i></div><span class="font-bold">產地宅配</span></div></label>
+                        <p class="text-lg font-bold text-brand-700 mb-4">3. 你平常比較常在哪裡購買生活用品？ <span class="text-red-500">*</span></p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="whereToBuy" value="實體門市／百貨公司" class="option-input"><div class="option-card p-3 rounded-xl border font-medium">🏬 實體門市／百貨公司</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="whereToBuy" value="蝦皮購物" class="option-input"><div class="option-card p-3 rounded-xl border font-medium">🛒 蝦皮購物</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="whereToBuy" value="MOMO" class="option-input"><div class="option-card p-3 rounded-xl border font-medium">🛍️ MOMO</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="whereToBuy" value="PChome" class="option-input"><div class="option-card p-3 rounded-xl border font-medium">📦 PChome</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="whereToBuy" value="酷澎 Coupang" class="option-input"><div class="option-card p-3 rounded-xl border font-medium">🚀 酷澎 Coupang</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="whereToBuy" value="好市多 Costco" class="option-input"><div class="option-card p-3 rounded-xl border font-medium">🏬 好市多 Costco</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="whereToBuy" value="全聯／家樂福等量販通路" class="option-input"><div class="option-card p-3 rounded-xl border font-medium">🛒 量販通路 (全聯/家樂福)</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="whereToBuy" value="LINE 群組／熟人推薦" class="option-input"><div class="option-card p-3 rounded-xl border font-medium">💬 LINE 群組／熟人推薦</div></label>
+                            <label class="cursor-pointer relative sm:col-span-2"><input type="checkbox" data-q="whereToBuy" value="看到喜歡就買，沒有固定平台" class="option-input"><div class="option-card p-3 rounded-xl border font-medium">👀 看到喜歡就買，沒有固定平台</div></label>
                         </div>
                         <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 flex items-center">
                             <span class="text-gray-500 text-sm mr-2 shrink-0 font-medium">其他：</span>
-                            <input type="checkbox" data-q="shopping" value="__other_option__" id="other-shop" class="hidden">
-                            <input type="text" data-q="shopping_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="歡迎告訴我們..." oninput="document.getElementById('other-shop').checked = (this.value.trim() !== '')">
+                            <input type="checkbox" data-q="whereToBuy" value="__other_option__" id="other-wheretobuy" class="hidden">
+                            <input type="text" data-q="whereToBuy_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="歡迎告訴我們..." oninput="document.getElementById('other-wheretobuy').checked = (this.value.trim() !== '')">
                         </div>
                     </div>
 
-                    <div class="mb-10">
-                        <p class="text-lg font-bold text-brand-700 mb-4">旅行偏好 <span class="text-red-500">*</span></p>
-                        <div class="flex flex-wrap gap-3 mb-4">
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPref" value="國內" class="option-input"><div class="option-card px-5 py-3 rounded-xl border bg-white font-bold">🇹🇼 國內</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPref" value="國外" class="option-input"><div class="option-card px-5 py-3 rounded-xl border bg-white font-bold">✈️ 國外</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPref" value="每個月" class="option-input"><div class="option-card px-5 py-3 rounded-xl border bg-white font-bold">📅 每個月</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPref" value="一年2次" class="option-input"><div class="option-card px-5 py-3 rounded-xl border bg-white font-bold">✌️ 一年2次</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPref" value="一年1次" class="option-input"><div class="option-card px-5 py-3 rounded-xl border bg-white font-bold">☝️ 一年1次</div></label>
-                        </div>
-                        <div class="bg-gray-50 p-3 rounded-lg border flex items-center">
-                            <span class="text-gray-500 text-sm mr-2 shrink-0">其他：</span>
-                            <input type="checkbox" data-q="travelPref" value="__other_option__" id="other-travel-pref" class="hidden">
-                            <input type="text" data-q="travelPref_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="請輸入..." oninput="document.getElementById('other-travel-pref').checked = (this.value.trim() !== '')">
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="text-lg font-bold text-brand-700 mb-4">旅行規劃方式 <span class="text-red-500">*</span></p>
+                    <div class="mb-6">
+                        <p class="text-lg font-bold text-brand-700 mb-2">4. 買東西時，你通常最在意什麼？ <span class="text-red-500">*</span></p>
+                        <p class="text-sm text-gray-500 mb-4">平常怎麼買、在意什麼，我想多懂一點。</p>
                         <div class="grid grid-cols-2 gap-3 mb-4">
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPlan" value="自由行" class="option-input"><div class="option-card p-4 rounded-xl border flex items-center gap-3"><i class="fa-solid fa-person-hiking text-gray-400"></i><span class="font-bold">自由行</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPlan" value="跟團" class="option-input"><div class="option-card p-4 rounded-xl border flex items-center gap-3"><i class="fa-solid fa-users-line text-gray-400"></i><span class="font-bold">跟團</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPlan" value="Klook" class="option-input"><div class="option-card p-4 rounded-xl border flex items-center gap-3"><span class="font-bold">Klook</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPlan" value="KKday" class="option-input"><div class="option-card p-4 rounded-xl border flex items-center gap-3"><span class="font-bold">KKday</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPlan" value="Agoda.com" class="option-input"><div class="option-card p-4 rounded-xl border flex items-center gap-3"><span class="font-bold">Agoda</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPlan" value="Booking.com" class="option-input"><div class="option-card p-4 rounded-xl border flex items-center gap-3"><span class="font-bold">Booking</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPlan" value="Hotels.com" class="option-input"><div class="option-card p-4 rounded-xl border flex items-center gap-3"><span class="font-bold">Hotels.com</span></div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="travelPlan" value="攜程網" class="option-input"><div class="option-card p-4 rounded-xl border flex items-center gap-3"><span class="font-bold">攜程網</span></div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shoppingFocus" value="價格划算" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">💰 價格划算</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shoppingFocus" value="品質安心" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🛡️ 品質安心</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shoppingFocus" value="成分／來源清楚" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🔍 成分／來源清楚</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shoppingFocus" value="有人幫我篩選比較" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🧑‍🏫 有人幫篩選比較</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shoppingFocus" value="售後服務" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">📞 售後服務</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shoppingFocus" value="品牌口碑" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🌟 品牌口碑</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="shoppingFocus" value="使用評價" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">⭐ 使用評價</div></label>
+                            <label class="cursor-pointer relative sm:col-span-2"><input type="checkbox" data-q="shoppingFocus" value="方便快速，不想花時間研究" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">⚡ 方便快速，不想花時間研究</div></label>
+                            <label class="cursor-pointer relative sm:col-span-2"><input type="checkbox" data-q="shoppingFocus" value="常常看心情，被燒到就買 😆" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🔥 常常看心情，被燒到就買 😆</div></label>
                         </div>
-                        <div class="bg-gray-50 p-3 rounded-lg border flex items-center">
-                            <span class="text-gray-500 text-sm mr-2 shrink-0">其他：</span>
-                            <input type="checkbox" data-q="travelPlan" value="__other_option__" id="other-travel-plan" class="hidden">
-                            <input type="text" data-q="travelPlan_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="請輸入..." oninput="document.getElementById('other-travel-plan').checked = (this.value.trim() !== '')">
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 flex items-center">
+                            <span class="text-gray-500 text-sm mr-2 shrink-0 font-medium">其他：</span>
+                            <input type="checkbox" data-q="shoppingFocus" value="__other_option__" id="other-shopfocus" class="hidden">
+                            <input type="text" data-q="shoppingFocus_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="歡迎告訴我們..." oninput="document.getElementById('other-shopfocus').checked = (this.value.trim() !== '')">
                         </div>
                     </div>
                 </div>
 
-                <div id="step4" class="step-content">
-                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">健康目標</h3>
+                <!-- Step 3: 生活需求與好物 -->
+                <div id="step3" class="step-content">
+                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">第三區｜最近有感的生活需求</h3>
                     
                     <div class="mb-10">
-                        <p class="text-lg font-bold text-brand-700 mb-4">您關注的保健需求？ <span class="text-red-500">*</span></p>
+                        <p class="text-lg font-bold text-brand-700 mb-4">5. 近期你比較容易對哪些生活內容或好物有興趣？ <span class="text-red-500">*</span></p>
                         <div class="grid grid-cols-2 gap-3 mb-4">
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="眼睛/疲勞、乾眼、老花、近視、白內障" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-eye"></i></div><span class="text-sm font-bold text-gray-700">眼睛疲勞</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="骨質疏鬆/膝關節退化" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-bone"></i></div><span class="text-sm font-bold text-gray-700">骨骼關節</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="三高：高血壓/糖尿病/高血脂" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-red-50 text-red-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-heart-pulse"></i></div><span class="text-sm font-bold text-gray-700">三高問題</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="失眠/淺眠" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-indigo-50 text-indigo-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-moon"></i></div><span class="text-sm font-bold text-gray-700">睡眠品質</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="拉肚子/便秘" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-toilet"></i></div><span class="text-sm font-bold text-gray-700">腸胃便秘</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="胃脹氣/胃潰瘍" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-yellow-100 text-yellow-700 flex items-center justify-center shrink-0"><i class="fa-solid fa-utensils"></i></div><span class="text-sm font-bold text-gray-700">胃脹消化</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="壓力大/工作時間長/爆肝" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-battery-half"></i></div><span class="text-sm font-bold text-gray-700">疲勞壓力</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="大人綜合維他命/B群" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-green-50 text-green-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-pills"></i></div><span class="text-sm font-bold text-gray-700">基礎B群</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="兒童綜合維他命/益生菌" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-child"></i></div><span class="text-sm font-bold text-gray-700">兒童保健</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="男性長輩攝護腺問題" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-mars"></i></div><span class="text-sm font-bold text-gray-700">攝護腺</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="女性經前症候群/更年期" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-venus"></i></div><span class="text-sm font-bold text-gray-700">女性調理</span></div></label>
-                            <label class="cursor-pointer group relative"><input type="checkbox" data-q="health" value="沒吃保健品" class="option-input"><div class="option-card p-3 rounded-xl border flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-gray-50 text-gray-400 flex items-center justify-center shrink-0"><i class="fa-solid fa-ban"></i></div><span class="text-sm font-bold text-gray-700">無需求</span></div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="居家日用品" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🏠 居家日用品</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="食品／零食／團購美食" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🍪 食品/零食/美食</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="健康保健／營養補充" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">💊 健康保健/營養</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="保養美容／美妝" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">💄 保養美容/美妝</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="體態管理／輕盈生活" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🏃‍♀️ 體態管理/輕盈</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="親子／家庭用品" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">👶 親子/家庭用品</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="旅遊規劃／旅遊好物" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">✈️ 旅遊規劃/好物</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="家電／3C 小物" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🔌 家電/3C 小物</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="AI 工具／生活效率" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🤖 AI 工具/效率</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="recentInterest" value="職涯成長／職場資訊" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">📈 職涯成長/職場</div></label>
+                            <label class="cursor-pointer relative sm:col-span-2"><input type="checkbox" data-q="recentInterest" value="目前都還好，看到喜歡再說" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">👀 目前都還好，看到喜歡再說</div></label>
                         </div>
                         <div class="bg-gray-50 p-3 rounded-lg border flex items-center">
-                            <span class="text-gray-500 text-sm mr-2">其他：</span>
-                            <input type="checkbox" data-q="health" value="__other_option__" id="other-health" class="hidden">
-                            <input type="text" data-q="health_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="請輸入..." oninput="document.getElementById('other-health').checked = (this.value.trim() !== '')">
+                            <span class="text-gray-500 text-sm mr-2 shrink-0">其他：</span>
+                            <input type="checkbox" data-q="recentInterest" value="__other_option__" id="other-recent" class="hidden">
+                            <input type="text" data-q="recentInterest_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="請輸入..." oninput="document.getElementById('other-recent').checked = (this.value.trim() !== '')">
                         </div>
                     </div>
 
                     <div>
-                        <p class="text-lg font-bold text-brand-700 mb-4">體重管理需求 <span class="text-red-500">*</span></p>
-                        <div class="space-y-2 mb-4">
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="weight" value="有運動習慣：跑步、健身、登山、瑜伽" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">🏃 有運動習慣 (跑步、健身...)</div></label>
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="weight" value="想調整體態：蝴蝶袖、鮪魚肚、大腿粗、臀部" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">🏋️‍♀️ 想調整體態 (蝴蝶袖、鮪魚肚...)</div></label>
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="weight" value="想降低體脂/內臟脂肪" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">📉 想降低體脂 / 內臟脂肪</div></label>
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="weight" value="有需要點心/代餐/瘦身輔助品" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">🥤 需要代餐 / 輔助品</div></label>
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="weight" value="想增肥" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">🍔 想增肥</div></label>
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="weight" value="都不需要" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">🚫 都不需要</div></label>
+                        <p class="text-lg font-bold text-brand-700 mb-2">6. 最近你自己或家人，比較關注哪些生活需求？ <span class="text-red-500">*</span></p>
+                        <p class="text-sm text-gray-500 mb-4">最近自己或家人比較在意什麼，也可以讓我未來分享更貼近你的內容。</p>
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="精神體力／常覺得累" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🔋 精神體力/易累</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="睡眠品質" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🛌 睡眠品質</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="腸胃順暢" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🚽 腸胃順暢</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="眼睛疲勞／用眼過度" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">👁️ 眼睛疲勞/用眼</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="骨骼關節保養" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🦴 骨骼關節保養</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="三高與熟齡保健" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">❤️ 三高與熟齡</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="女性／男性日常保養" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">👫 女性/男性保養</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="體態與飲食管理" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🥗 體態/飲食管理</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="親子照顧" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🍼 親子照顧</div></label>
+                            <label class="cursor-pointer relative"><input type="checkbox" data-q="lifeNeeds" value="目前沒有特別需求" class="option-input"><div class="option-card p-3 rounded-xl border font-medium text-sm">🚫 目前沒有特別需求</div></label>
                         </div>
                         <div class="bg-gray-50 p-3 rounded-lg border flex items-center">
-                            <span class="text-gray-500 text-sm mr-2">其他：</span>
-                            <input type="checkbox" data-q="weight" value="__other_option__" id="other-weight" class="hidden">
-                            <input type="text" data-q="weight_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="歡迎告訴我們..." oninput="document.getElementById('other-weight').checked = (this.value.trim() !== '')">
+                            <span class="text-gray-500 text-sm mr-2 shrink-0">其他：</span>
+                            <input type="checkbox" data-q="lifeNeeds" value="__other_option__" id="other-life" class="hidden">
+                            <input type="text" data-q="lifeNeeds_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="請輸入..." oninput="document.getElementById('other-life').checked = (this.value.trim() !== '')">
                         </div>
                     </div>
                 </div>
 
+                <!-- Step 4: 對群組與服務的感受 -->
+                <div id="step4" class="step-content">
+                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">第四區｜你對群組與服務的感受</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100" id="feedback-1">
+                            <p class="text-lg font-bold text-brand-700 mb-2">7. 你喜歡群組裡這種「你問我找」、有人幫忙留意好物的方式嗎？ <span class="text-red-500">*</span></p>
+                            <p class="text-sm text-gray-500 mb-4">也想聽聽你對目前分享方式的真實感受。</p>
+                            <div class="flex flex-col gap-3">
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-brand-50 cursor-pointer relative transition-colors"><input type="radio" data-q="groupFeel" value="喜歡，蠻方便的" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium text-gray-700">喜歡，蠻方便的</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-brand-50 cursor-pointer relative transition-colors"><input type="radio" data-q="groupFeel" value="還不錯，偶爾會參考" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium text-gray-700">還不錯，偶爾會參考</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-brand-50 cursor-pointer relative transition-colors"><input type="radio" data-q="groupFeel" value="普通，看內容而定" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium text-gray-700">普通，看內容而定</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-brand-50 cursor-pointer relative transition-colors"><input type="radio" data-q="groupFeel" value="我目前比較少看群組資訊" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium text-gray-700">我目前比較少看群組資訊</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-brand-50 cursor-pointer relative transition-colors"><input type="radio" data-q="groupFeel" value="我不在購物群中" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium text-gray-700">我不在購物群中</span></label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100" id="feedback-2">
+                            <p class="text-lg font-bold text-brand-700 mb-4">8. 現在物價真的不太客氣 😅 若有機會讓原本的消費多一點回饋或收入可能，你會想聽聽看嗎？ <span class="text-red-500">*</span></p>
+                            <div class="flex flex-col gap-3">
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-green-50 cursor-pointer relative transition-colors"><input type="radio" data-q="incomeInterest" value="有興趣，可以了解" class="w-5 h-5 text-green-600 focus:ring-green-500"><span class="ml-3 font-medium text-gray-700">有興趣，可以了解</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-green-50 cursor-pointer relative transition-colors"><input type="radio" data-q="incomeInterest" value="可能有興趣，但想先觀察" class="w-5 h-5 text-green-600 focus:ring-green-500"><span class="ml-3 font-medium text-gray-700">可能有興趣，但想先觀察</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer relative transition-colors"><input type="radio" data-q="incomeInterest" value="暫時沒有" class="w-5 h-5 text-gray-600 focus:ring-gray-500"><span class="ml-3 font-medium text-gray-700">暫時沒有</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer relative transition-colors"><input type="radio" data-q="incomeInterest" value="我比較想先當單純消費者" class="w-5 h-5 text-gray-600 focus:ring-gray-500"><span class="ml-3 font-medium text-gray-700">我比較想先當單純消費者</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: 活動與工作坊 -->
                 <div id="step5" class="step-content">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="flex items-center justify-center w-14 h-14 bg-orange-100 rounded-full text-orange-600 shrink-0"><i class="fa-solid fa-brain text-xl"></i></div>
+                    <h3 class="text-2xl font-bold text-brand-700 mb-2 border-l-4 border-brand-500 pl-3">第五區｜活動與工作坊興趣</h3>
+                    <p class="text-sm text-gray-500 mb-6 pl-4">生活變化很快，不管是 AI、職場、健康或收入規劃，有時候不是我們不努力，而是需要多一點工具和方法。</p>
+
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100" id="feedback-3">
+                            <p class="text-lg font-bold text-brand-700 mb-4">9. 面對 AI 快速發展，你會不會擔心自己或家人的工作方式需要跟著升級？ <span class="text-red-500">*</span></p>
+                            <div class="flex flex-col gap-3">
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-blue-50 cursor-pointer relative transition-colors"><input type="radio" data-q="aiAnxiety" value="會，覺得 AI 影響會越來越大" class="w-5 h-5 text-blue-600 focus:ring-blue-500"><span class="ml-3 font-medium text-gray-700">會，覺得 AI 影響會越來越大</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-blue-50 cursor-pointer relative transition-colors"><input type="radio" data-q="aiAnxiety" value="有一點，想先了解能怎麼用" class="w-5 h-5 text-blue-600 focus:ring-blue-500"><span class="ml-3 font-medium text-gray-700">有一點，想先了解能怎麼用</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-blue-50 cursor-pointer relative transition-colors"><input type="radio" data-q="aiAnxiety" value="還好，但如果簡單實用也願意學" class="w-5 h-5 text-blue-600 focus:ring-blue-500"><span class="ml-3 font-medium text-gray-700">還好，但如果簡單實用也願意學</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer relative transition-colors"><input type="radio" data-q="aiAnxiety" value="暫時不擔心" class="w-5 h-5 text-gray-600 focus:ring-gray-500"><span class="ml-3 font-medium text-gray-700">暫時不擔心</span></label>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100" id="feedback-4">
+                            <p class="text-lg font-bold text-brand-700 mb-4">10. 如果有一些實用的小講座，能幫助你提升生活效率或增加收入可能，你會想了解嗎？ <span class="text-red-500">*</span></p>
+                            <div class="flex flex-col gap-3">
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-orange-50 cursor-pointer relative transition-colors"><input type="radio" data-q="lectureInterest" value="會，很有興趣" class="w-5 h-5 text-orange-500 focus:ring-orange-500"><span class="ml-3 font-medium text-gray-700">會，很有興趣</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-orange-50 cursor-pointer relative transition-colors"><input type="radio" data-q="lectureInterest" value="可以，想先看看主題" class="w-5 h-5 text-orange-500 focus:ring-orange-500"><span class="ml-3 font-medium text-gray-700">可以，想先看看主題</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer relative transition-colors"><input type="radio" data-q="lectureInterest" value="還好，有需要再說" class="w-5 h-5 text-gray-600 focus:ring-gray-500"><span class="ml-3 font-medium text-gray-700">還好，有需要再說</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer relative transition-colors"><input type="radio" data-q="lectureInterest" value="暫時沒有興趣" class="w-5 h-5 text-gray-600 focus:ring-gray-500"><span class="ml-3 font-medium text-gray-700">暫時沒有興趣</span></label>
+                            </div>
+                        </div>
+
                         <div>
-                            <h2 class="text-xl font-bold text-brand-700">消費決策風格</h2>
-                            <p class="text-gray-600 text-sm">測出您的購物決策類型！</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
-                        <p class="text-xl font-bold text-brand-700 mb-6 text-center leading-relaxed"><span class="border-b-4 border-orange-200">當商場正在辦限時特賣，<br>您最可能會...？</span> <span class="text-red-500">*</span></p>
-                        <div class="space-y-3" id="decision-style-group">
-                            <label class="cursor-pointer group block relative">
-                                <input type="radio" data-q="decision" value="立刻衝過去看看！機會不等人" class="option-input" onchange="storeDecisionStyle('impulse')">
-                                <div class="option-card p-4 rounded-xl border flex items-center gap-4">
-                                    <div class="icon-box w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-lg"><i class="fa-solid fa-fire"></i></div>
-                                    <span class="font-medium">立刻衝過去看看！機會不等人</span>
-                                </div>
-                            </label>
-                            <label class="cursor-pointer group block relative">
-                                <input type="radio" data-q="decision" value="先查評價和比價再決定" class="option-input" onchange="storeDecisionStyle('rational')">
-                                <div class="option-card p-4 rounded-xl border flex items-center gap-4">
-                                    <div class="icon-box w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg"><i class="fa-solid fa-magnifying-glass"></i></div>
-                                    <span class="font-medium">先查評價和比價再決定</span>
-                                </div>
-                            </label>
-                            <label class="cursor-pointer group block relative">
-                                <input type="radio" data-q="decision" value="問問朋友的意見最安心" class="option-input" onchange="storeDecisionStyle('social')">
-                                <div class="option-card p-4 rounded-xl border flex items-center gap-4">
-                                    <div class="icon-box w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-lg"><i class="fa-solid fa-users"></i></div>
-                                    <span class="font-medium">問問朋友的意見最安心</span>
-                                </div>
-                            </label>
-                            <label class="cursor-pointer group block relative">
-                                <input type="radio" data-q="decision" value="再等等，說不定有更好的" class="option-input" onchange="storeDecisionStyle('patient')">
-                                <div class="option-card p-4 rounded-xl border flex items-center gap-4">
-                                    <div class="icon-box w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-lg"><i class="fa-solid fa-clock"></i></div>
-                                    <span class="font-medium">再等等，說不定有更好的</span>
-                                </div>
-                            </label>
+                            <p class="text-lg font-bold text-brand-700 mb-4">11. 如果未來舉辦一些實用型小講座或工作坊，你會對哪些主題有興趣？ <span class="text-red-500">*</span></p>
+                            <div class="space-y-3 mb-4">
+                                <label class="cursor-pointer block relative"><input type="checkbox" data-q="workshopTheme" value="AI 生活應用工作坊｜用 AI 規劃旅遊、做圖片、提升工作效率" class="option-input"><div class="option-card p-4 rounded-xl border font-medium text-sm">🤖 AI 生活應用工作坊｜用 AI 規劃旅遊、做圖片、提升效率</div></label>
+                                <label class="cursor-pointer block relative"><input type="checkbox" data-q="workshopTheme" value="肌膚保養與日常護理工作坊" class="option-input"><div class="option-card p-4 rounded-xl border font-medium text-sm">✨ 肌膚保養與日常護理工作坊</div></label>
+                                <label class="cursor-pointer block relative"><input type="checkbox" data-q="workshopTheme" value="HR 職場知識講座｜履歷、面試、職場溝通、勞資觀念" class="option-input"><div class="option-card p-4 rounded-xl border font-medium text-sm">💼 HR 職場知識講座｜履歷、面試、溝通、勞資觀念</div></label>
+                                <label class="cursor-pointer block relative"><input type="checkbox" data-q="workshopTheme" value="輕盈體態養成班" class="option-input"><div class="option-card p-4 rounded-xl border font-medium text-sm">🏃‍♀️ 輕盈體態養成班</div></label>
+                                <label class="cursor-pointer block relative"><input type="checkbox" data-q="workshopTheme" value="創造第二收入／斜槓發展分享" class="option-input"><div class="option-card p-4 rounded-xl border font-medium text-sm">💰 創造第二收入／斜槓發展分享</div></label>
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 flex items-center">
+                                <span class="text-gray-500 text-sm mr-2 shrink-0 font-medium">其他：</span>
+                                <input type="checkbox" data-q="workshopTheme" value="__other_option__" id="other-workshop" class="hidden">
+                                <input type="text" data-q="workshopTheme_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="歡迎告訴我們..." oninput="document.getElementById('other-workshop').checked = (this.value.trim() !== '')">
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Step 6: 保持聯繫 -->
                 <div id="step6" class="step-content">
-                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">美麗保養</h3>
-
-                    <div class="mb-10 relative">
-                        <p class="text-lg font-bold text-brand-700 mb-4">您的肌膚屬性？ <span class="text-red-500">*</span></p>
-                        <div class="flex flex-wrap gap-3" id="skin-type-group">
-                            <label class="cursor-pointer relative"><input type="radio" data-q="skin" value="中性" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">😊 中性</div></label>
-                            <label class="cursor-pointer relative"><input type="radio" data-q="skin" value="油性" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">💧 油性</div></label>
-                            <label class="cursor-pointer relative"><input type="radio" data-q="skin" value="乾性" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">🌵 乾性</div></label>
-                            <label class="cursor-pointer relative"><input type="radio" data-q="skin" value="混合性" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">🌗 混合性</div></label>
-                            <label class="cursor-pointer relative"><input type="radio" data-q="skin" value="敏感性" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">🪶 敏感性</div></label>
-                            <label class="cursor-pointer relative"><input type="radio" data-q="skin" value="不知道" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">❓ 不知道</div></label>
-                        </div>
-                    </div>
-
-                    <div class="mb-10">
-                        <p class="text-lg font-bold text-brand-700 mb-4">會購買的護膚品？ <span class="text-red-500">*</span></p>
-                        <div class="grid grid-cols-3 gap-3 text-center mb-4">
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="洗面乳" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">洗面乳</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="化妝水" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">化妝水</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="精華液" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">精華液</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="乳液" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">乳液</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="防曬" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">防曬</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="眼霜" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">眼霜</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="美白" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">美白</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="淡斑" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">淡斑</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="除皺" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">除皺</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="面膜/眼膜" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">面膜/眼膜</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="身體護手乳" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">身體護手乳</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="skincare" value="沒保養" class="option-input"><div class="option-card py-4 rounded-xl border font-bold text-sm">沒保養</div></label>
-                        </div>
-                        <div class="bg-gray-50 p-3 rounded-lg border flex items-center">
-                            <span class="text-gray-500 text-sm mr-2">其他：</span>
-                            <input type="checkbox" data-q="skincare" value="__other_option__" id="other-skincare" class="hidden">
-                            <input type="text" data-q="skincare_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="請輸入..." oninput="document.getElementById('other-skincare').checked = (this.value.trim() !== '')">
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="text-lg font-bold text-brand-700 mb-4">彩妝需求？ <span class="text-red-500">*</span></p>
-                        <div class="space-y-2 mb-4">
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="makeup" value="臉妝：粉底霜/粉底液/腮紅/修容餅/蜜粉" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">💄 臉妝 (粉底、腮紅...)</div></label>
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="makeup" value="眼妝：睫毛膏/眼線筆/眼影/眉筆/睫毛增長液" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">👁️ 眼妝 (睫毛、眼線...)</div></label>
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="makeup" value="唇妝：護唇膏/乾裂/唇細紋/口紅/唇蜜" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">💋 唇妝 (口紅、護唇...)</div></label>
-                            <label class="cursor-pointer block relative"><input type="checkbox" data-q="makeup" value="不化妝" class="option-input"><div class="option-card p-4 rounded-xl border font-bold">🚫 不化妝</div></label>
-                        </div>
-                        <div class="bg-gray-50 p-3 rounded-lg border flex items-center">
-                            <span class="text-gray-500 text-sm mr-2">其他：</span>
-                            <input type="checkbox" data-q="makeup" value="__other_option__" id="other-makeup" class="hidden">
-                            <input type="text" data-q="makeup_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="歡迎告訴我們..." oninput="document.getElementById('other-makeup').checked = (this.value.trim() !== '')">
-                        </div>
-                    </div>
-                </div>
-
-                <div id="step7" class="step-content">
-                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">最後一步：您的想法</h3>
-
-                    <div class="mb-10">
-                        <p class="text-lg font-bold text-brand-700 mb-4">家中有嬰幼兒用品需求嗎？ <span class="text-red-500">*</span></p>
-                        <div class="flex flex-wrap gap-3 mb-4">
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="baby" value="尿布/配方奶粉" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">🍼 奶粉尿布</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="baby" value="嬰兒沐浴乳" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">🛁 沐浴乳</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="baby" value="預防紅屁屁" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">👶 預防紅屁屁</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="baby" value="嬰兒乳液" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">🧴 嬰兒乳液</div></label>
-                            <label class="cursor-pointer relative"><input type="checkbox" data-q="baby" value="都不需要" class="option-input"><div class="option-card px-5 py-3 rounded-xl border font-bold">🚫 都不需要</div></label>
-                        </div>
-                        <div class="bg-gray-50 p-3 rounded-lg border flex items-center">
-                            <span class="text-gray-500 text-sm mr-2">其他：</span>
-                            <input type="checkbox" data-q="baby" value="__other_option__" id="other-baby" class="hidden">
-                            <input type="text" data-q="baby_other" class="other-input w-full bg-transparent border-b border-gray-300 outline-none py-1" placeholder="請輸入..." oninput="document.getElementById('other-baby').checked = (this.value.trim() !== '')">
-                        </div>
-                    </div>
-
-                    <div class="space-y-5">
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border" id="feedback-1">
-                            <p class="text-base font-bold mb-3">喜歡群組「你問我找」的無壓力購物模式嗎？ <span class="text-red-500">*</span></p>
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb1" value="是" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">是</span></label>
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb1" value="否" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">否</span></label>
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb1" value="我沒在購物群" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">我沒在購物群</span></label>
+                    <h3 class="text-2xl font-bold text-brand-700 mb-6 border-l-4 border-brand-500 pl-3">最後一步：保持聯繫</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100" id="feedback-5">
+                            <p class="text-lg font-bold text-brand-700 mb-4">12. 如果之後看到適合你的優惠、好物或活動資訊，我可以偶爾提醒你嗎？ <span class="text-red-500">*</span></p>
+                            <div class="flex flex-col gap-3">
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-brand-50 cursor-pointer relative transition-colors"><input type="radio" data-q="notification" value="可以，私訊我也沒問題" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium text-gray-700">可以，私訊我也沒問題 💬</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-brand-50 cursor-pointer relative transition-colors"><input type="radio" data-q="notification" value="群組看到就好" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium text-gray-700">群組看到就好 📱</span></label>
+                                <label class="inline-flex items-center p-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer relative transition-colors"><input type="radio" data-q="notification" value="暫時不用" class="w-5 h-5 text-gray-600 focus:ring-gray-500"><span class="ml-3 font-medium text-gray-700">暫時不用 🚫</span></label>
                             </div>
                         </div>
 
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border" id="feedback-2">
-                            <p class="text-base font-bold mb-3">物價飛漲，覺得生活不易或錢越來越難用？ <span class="text-red-500">*</span></p>
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb2" value="是" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">是</span></label>
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb2" value="否" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">否</span></label>
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb2" value="我沒在購物群" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">我沒在購物群</span></label>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border" id="feedback-3">
-                            <p class="text-base font-bold mb-3">喜歡群組有人服務您網購嗎？ <span class="text-red-500">*</span></p>
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb3" value="是" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">是</span></label>
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb3" value="否" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">否</span></label>
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb3" value="我沒在購物群" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">我沒在購物群</span></label>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border" id="feedback-4">
-                            <p class="text-base font-bold mb-3">若有機會透過網路消費增加收入，您會有興趣嗎？ <span class="text-red-500">*</span></p>
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb4" value="是" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">是</span></label>
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb4" value="否" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">否</span></label>
-                                <label class="inline-flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer relative"><input type="radio" data-q="fb4" value="我沒在購物群" class="w-5 h-5 text-brand-600 focus:ring-brand-500"><span class="ml-3 font-medium">我沒在購物群</span></label>
-                            </div>
+                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                            <p class="text-lg font-bold text-brand-700 mb-2">13. 有沒有什麼商品、活動或生活主題，是你最近剛好想了解的？ (選填)</p>
+                            <p class="text-sm text-gray-500 mb-4">可自由填寫，沒有也沒關係 😊</p>
+                            <textarea data-q="wishlist" rows="3" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 outline-none focus:border-brand-500 transition-colors resize-none" placeholder="想找什麼好物？或是想聽什麼講座？都歡迎告訴我！"></textarea>
                         </div>
                     </div>
                 </div>
@@ -424,97 +326,78 @@
 
     <div class="bg-white border-t border-gray-100 p-4 sticky bottom-0 z-50 shadow-lg">
         <div class="max-w-xl mx-auto flex gap-3">
-            <button type="button" id="prev-btn" onclick="changeStep(-1)" class="hidden flex-1 py-3 px-4 rounded-xl border-2 font-bold hover:bg-gray-50 active:scale-95"><i class="fa-solid fa-arrow-left mr-2"></i>上一步</button>
-            <button type="button" id="next-btn" onclick="changeStep(1)" class="flex-1 py-3 px-4 rounded-xl bg-brand-600 text-white font-bold shadow-lg active:scale-95">下一步<i class="fa-solid fa-arrow-right ml-2"></i></button>
-            <button type="button" id="submit-btn" onclick="attemptSubmit()" class="hidden flex-1 py-3 px-4 rounded-xl bg-brand-600 text-white font-bold shadow-lg active:scale-95"><i class="fa-solid fa-sparkles mr-2"></i>查看測驗結果</button>
+            <button type="button" id="prev-btn" onclick="changeStep(-1)" class="hidden flex-1 py-3 px-4 rounded-xl border-2 font-bold hover:bg-gray-50 active:scale-95 transition-transform"><i class="fa-solid fa-arrow-left mr-2"></i>上一步</button>
+            <button type="button" id="next-btn" onclick="changeStep(1)" class="flex-1 py-3 px-4 rounded-xl bg-brand-600 text-white font-bold shadow-lg shadow-brand-500/30 active:scale-95 transition-transform">下一步<i class="fa-solid fa-arrow-right ml-2"></i></button>
+            <button type="button" id="submit-btn" onclick="attemptSubmit()" class="hidden flex-1 py-3 px-4 rounded-xl bg-brand-600 text-white font-bold shadow-lg shadow-brand-500/30 active:scale-95 transition-transform"><i class="fa-solid fa-paper-plane mr-2"></i>送出問卷並看運勢</button>
         </div>
     </div>
 
+    <!-- 成功畫面彈窗 -->
     <div id="successModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
         <div class="relative bg-white rounded-3xl p-0 max-w-sm w-full shadow-2xl transform transition-all scale-100 overflow-hidden flex flex-col max-h-[90vh]">
-            <div class="bg-gradient-to-br from-brand-600 to-brand-700 p-5 text-white shrink-0 relative overflow-hidden">
+            <div class="bg-gradient-to-br from-brand-600 to-brand-800 p-6 text-white shrink-0 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-10 -mt-10"></div>
                 <div class="flex items-center gap-4 relative z-10">
                     <div class="w-16 h-16 rounded-full border-2 border-white/50 shadow-lg overflow-hidden shrink-0 bg-white">
                         <img src="https://lh3.googleusercontent.com/d/15Yy3j8CewSBciaLxyjN7x6S1yaUZw0aM=w1000" alt="大仁哥" class="w-full h-full object-cover object-top">
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white">分析完成！</h3>
-                        <p class="text-brand-100 text-xs mt-1">這是我根據星盤大數據<br>為您整理的專屬報告 👇</p>
+                        <h3 class="text-xl font-bold text-white mb-1">大仁哥已收到！</h3>
+                        <p class="text-brand-100 text-xs">謝謝你的分享，這是我為你準備的<br>2026 專屬星盤流年運勢 👇</p>
                     </div>
                 </div>
             </div>
             <div class="p-6 overflow-y-auto">
-                <div class="mb-6">
-                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2"><i class="fa-solid fa-shopping-cart text-brand-500"></i> 您的購物潛意識</h4>
-                    <div id="result-psy" class="bg-brand-50 rounded-xl p-4 text-gray-700 text-sm leading-relaxed border border-brand-100"></div>
-                </div>
-                <div class="mb-6" id="decision-style-section">
-                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2"><i class="fa-solid fa-brain text-orange-500"></i> 消費決策風格</h4>
-                    <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-4 border border-orange-200">
-                        <p id="result-decision-title" class="text-lg font-bold text-orange-700 mb-2"></p>
-                        <p id="result-decision-desc" class="text-gray-700 text-sm leading-relaxed mb-3"></p>
-                        <p id="result-decision-advice" class="text-orange-600 text-xs bg-white/50 p-2 rounded-lg"></p>
-                    </div>
-                </div>
-                <div class="mb-6" id="zodiac-section">
-                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2"><i class="fa-solid fa-star text-yellow-500"></i> 2026 星盤流年運勢</h4>
-                    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-4 border border-yellow-200">
-                        <div class="flex items-center gap-3 mb-3 border-b border-yellow-200 pb-2">
-                            <span class="text-4xl" id="zodiac-icon">✨</span>
-                            <div class="flex flex-col"><span class="text-lg text-yellow-800 font-bold" id="zodiac-title">星座</span><span class="text-xs text-yellow-600">您的太陽星座</span></div>
-                            <span class="text-xs text-white bg-yellow-500 px-2 py-1 rounded-full ml-auto">2026運勢</span>
+                <div class="mb-2" id="zodiac-section">
+                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i class="fa-solid fa-star text-yellow-500"></i> 專屬運勢解析</h4>
+                    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-5 border border-yellow-200 shadow-inner">
+                        <div class="flex items-center gap-3 mb-4 border-b border-yellow-200 pb-3">
+                            <span class="text-4xl drop-shadow-sm" id="zodiac-icon">✨</span>
+                            <div class="flex flex-col"><span class="text-lg text-yellow-800 font-bold" id="zodiac-title">星座</span><span class="text-xs text-yellow-600 font-medium">您的太陽星座</span></div>
+                            <span class="text-xs text-white bg-gradient-to-r from-yellow-500 to-orange-400 px-3 py-1 rounded-full ml-auto font-bold shadow-sm">2026運勢</span>
                         </div>
-                        <p id="result-zodiac-personality" class="text-gray-700 text-sm leading-relaxed mb-3 pb-3 border-b border-yellow-100 border-dashed"></p>
-                        <p id="result-zodiac-horoscope" class="text-gray-700 text-sm leading-relaxed font-medium"></p>
+                        <p id="result-zodiac-horoscope" class="text-gray-800 text-sm leading-relaxed font-medium"></p>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-2"><i class="fa-solid fa-lightbulb text-green-500"></i> 大仁哥的專屬建議</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">新的一年，記得多愛自己一點！無論是透過好物提升生活品質，還是投資健康，大仁哥優質生活嚴選都會陪著您一起變更好。✨</p>
+                <div class="mt-6 bg-brand-50 p-4 rounded-xl border border-brand-100">
+                    <h4 class="text-sm font-bold text-brand-700 mb-2 flex items-center gap-2"><i class="fa-solid fa-hand-holding-heart text-brand-500"></i> 大仁哥的專屬承諾</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">你的每一個想法都很珍貴！未來 <strong>大仁哥優質生活嚴選</strong> 會持續為你尋找最適合的好物與實用資訊，我們群組見囉！✨</p>
                 </div>
             </div>
             <div class="p-4 border-t border-gray-100 shrink-0 bg-gray-50">
-                <button onclick="closeModal()" class="w-full py-3 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 active:scale-95"><i class="fa-solid fa-check-circle mr-2"></i>太準了！關閉視窗</button>
+                <button onclick="closeModal()" class="w-full py-3.5 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 active:scale-95 transition-all shadow-md"><i class="fa-solid fa-check-circle mr-2"></i>太棒了！關閉視窗</button>
             </div>
         </div>
     </div>
 
     <script>
         // ==========================================
-        // 🚨 大仁哥專屬 Google 表單設定區 🚨
+        // 🚨 購物小習慣問卷 Google 表單對應設定區 🚨
         // ==========================================
         const GOOGLE_FORM_CONFIG = {
-            actionUrl: "https://docs.google.com/forms/d/e/1FAIpQLSf1UJwYVJxhiDdPFS-EkXAIkBb-8_nVTnqTp7tlJvI7yhGflw/formResponse",
+            actionUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdyv36pUqtSsfyc4vyXUNR_LERp3ulV4Kx5P5wRykrYOzbhUQ/formResponse",
             entryIds: {
-                psyChoice: "entry.1221656396",      // Step 1: 潛意識選擇
-                name: "entry.1947362638",           // Step 2: 名字
-                birthday: "entry.1637822650",       // Step 2: 出生月日
-                shopping: "entry.1921616399",       // Step 3: 購物場所
-                travelPref: "entry.1954197687",     // Step 3: 旅行偏好
-                travelPlan: "entry.1930263458",     // Step 3: 旅行規劃方式
-                health: "entry.87245979",         // Step 4: 保健需求
-                weight: "entry.72843877",         // Step 4: 體重管理
-                decision: "entry.183142830",       // Step 5: 決策風格
-                skin: "entry.798701128",            // Step 6: 肌膚屬性
-                skincare: "entry.3439028",       // Step 6: 護膚品
-                makeup: "entry.582521907",         // Step 6: 彩妝
-                baby: "entry.835140164",           // Step 7: 嬰幼兒需求
-                fb1: "entry.1155724814",            // Step 7: 你問我找模式
-                fb2: "entry.1228384346",            // Step 7: 物價飛漲
-                fb3: "entry.33216688",            // Step 7: 專人服務
-                fb4: "entry.2018998320"             // Step 7: 增加收入
+                name: "entry.1039036662",             // 1. 你的名字或 LINE 顯示名稱是？
+                whereToBuy: "entry.1476122376",       // 3. 你平常比較常在哪裡購買生活用品？
+                shoppingFocus: "entry.619049139",     // 4. 買東西時，你通常最在意什麼？
+                recentInterest: "entry.403216638",    // 5. 近期你比較容易對哪些生活內容或好物有興趣？
+                lifeNeeds: "entry.931848376",         // 6. 最近你自己或家人，比較關注哪些生活需求？
+                groupFeel: "entry.2060741038",        // 7. 你喜歡群組裡這種「你問我找」、有人幫忙留意好物的方式嗎？
+                incomeInterest: "entry.320568607",    // 8. 現在物價真的不太客氣...
+                aiAnxiety: "entry.818779648",         // 9. 面對 AI 快速發展，你會不會擔心...
+                lectureInterest: "entry.1195410664",  // 10. 如果有一些實用的小講座...
+                workshopTheme: "entry.1074642",       // 11. 如果未來舉辦一些實用型小講座或工作坊...
+                notification: "entry.665880911",      // 12. 如果之後看到適合你的優惠、好物或活動資訊...
+                wishlist: "entry.1813781091"          // 13. 有沒有什麼商品、活動或生活主題...(選填)
             }
         };
 
         // ==========================================
-        // 以下為系統自動運作邏輯，不需修改
+        // 以下為系統自動運作邏輯
         // ==========================================
         let currentStep = 1;
-        const totalSteps = 7;
-        let userPsyChoice = '';
-        let userDecisionStyle = '';
+        const totalSteps = 6;
         let isSubmitting = false;
         let autoSaveTimer = null;
 
@@ -528,7 +411,7 @@
                 if (e.target.matches('input, select, textarea')) { debouncedAutoSave(); updateCompletion(); }
             });
             document.getElementById('surveyForm').addEventListener('input', function (e) {
-                if (e.target.matches('input[type="text"], input[type="tel"]')) { debouncedAutoSave(); updateCompletion(); }
+                if (e.target.matches('input[type="text"], input[type="tel"], textarea')) { debouncedAutoSave(); updateCompletion(); }
             });
         });
 
@@ -536,22 +419,19 @@
             const form = document.getElementById('surveyForm');
             form.action = GOOGLE_FORM_CONFIG.actionUrl;
 
-            document.querySelectorAll('input[data-q]').forEach(input => {
+            document.querySelectorAll('input[data-q], textarea[data-q]').forEach(input => {
                 const qKey = input.getAttribute('data-q');
                 
-                if (GOOGLE_FORM_CONFIG.entryIds[qKey] && GOOGLE_FORM_CONFIG.entryIds[qKey] !== "entry.填入數字") {
+                if (GOOGLE_FORM_CONFIG.entryIds[qKey]) {
                     input.name = GOOGLE_FORM_CONFIG.entryIds[qKey];
                 } else if (qKey.endsWith('_other')) {
                     const baseKey = qKey.replace('_other', '');
-                    if (GOOGLE_FORM_CONFIG.entryIds[baseKey] && GOOGLE_FORM_CONFIG.entryIds[baseKey] !== "entry.填入數字") {
+                    if (GOOGLE_FORM_CONFIG.entryIds[baseKey]) {
                         input.name = GOOGLE_FORM_CONFIG.entryIds[baseKey] + '.other_option_response';
                     }
                 }
             });
         }
-
-        function storePsyResult(value) { userPsyChoice = value; autoSave(); }
-        function storeDecisionStyle(value) { userDecisionStyle = value; autoSave(); }
 
         function autoSave() {
             try {
@@ -564,10 +444,8 @@
                     } else { data[key] = value; }
                 }
                 data._currentStep = currentStep;
-                data._psyChoice = userPsyChoice;
-                data._userDecisionStyle = userDecisionStyle;
                 data._birth_mmdd = document.getElementById('birth-mmdd').value;
-                localStorage.setItem('surveyProgress', JSON.stringify(data));
+                localStorage.setItem('surveyProgress2026', JSON.stringify(data));
             } catch (error) { console.error('自動儲存失敗:', error); }
         }
 
@@ -575,13 +453,11 @@
 
         function restoreProgress() {
             try {
-                const saved = localStorage.getItem('surveyProgress');
+                const saved = localStorage.getItem('surveyProgress2026');
                 if (!saved) return;
                 const data = JSON.parse(saved);
-                if (confirm('偵測到未完成的問卷，是否繼續填寫？')) {
+                if (confirm('偵測到之前未完成的問卷，是否繼續填寫？')) {
                     if (data._currentStep) currentStep = parseInt(data._currentStep);
-                    if (data._psyChoice) userPsyChoice = data._psyChoice;
-                    if (data._userDecisionStyle) userDecisionStyle = data._userDecisionStyle;
                     if (data._birth_mmdd) {
                         const mmddInput = document.getElementById('birth-mmdd');
                         mmddInput.value = data._birth_mmdd;
@@ -590,7 +466,7 @@
                     Object.keys(data).forEach(key => {
                         if (key.startsWith('_')) return;
                         const value = data[key];
-                        const textInput = document.querySelector(`input[name="${key}"][type="text"], input[name="${key}"][type="hidden"]`);
+                        const textInput = document.querySelector(`input[name="${key}"][type="text"], input[name="${key}"][type="hidden"], textarea[name="${key}"]`);
                         if (textInput && !Array.isArray(value)) textInput.value = value;
                         const radioInput = document.querySelector(`input[name="${key}"][value="${value}"]`);
                         if (radioInput && radioInput.type === 'radio') radioInput.checked = true;
@@ -601,29 +477,31 @@
                             });
                         }
                     });
-                    showToast('已恢復您的填寫進度', 'success');
-                } else { localStorage.removeItem('surveyProgress'); }
-            } catch (error) { localStorage.removeItem('surveyProgress'); }
+                    showToast('已為您恢復填寫進度', 'success');
+                } else { localStorage.removeItem('surveyProgress2026'); }
+            } catch (error) { localStorage.removeItem('surveyProgress2026'); }
         }
 
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            const colors = { success: 'bg-green-500', error: 'bg-red-500', warning: 'bg-yellow-500', info: 'bg-blue-500' };
+            const colors = { success: 'bg-green-500', error: 'bg-red-500', warning: 'bg-yellow-500', info: 'bg-brand-500' };
             const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
-            toast.className = `toast ${colors[type]} text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 font-medium`;
+            toast.className = `toast ${colors[type]} text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-2 font-medium`;
             toast.innerHTML = `<i class="fa-solid ${icons[type]}"></i>${message}`;
             container.appendChild(toast);
             setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(-20px)'; setTimeout(() => toast.remove(), 300); }, 1500);
         }
 
         function updateCompletion() {
-            const requiredKeys = ['name', 'birthday', 'shopping', 'travelPref', 'travelPlan', 'health', 'weight', 'decision', 'skin', 'skincare', 'makeup', 'baby', 'fb1', 'fb2', 'fb3', 'fb4'];
-            let total = requiredKeys.length + 1; // +1 for psyChoice
-            let filled = userPsyChoice ? 1 : 0;
+            // wishlist 13 為選填，不列入計算
+            const requiredKeys = ['name', 'whereToBuy', 'shoppingFocus', 'recentInterest', 'lifeNeeds', 'groupFeel', 'incomeInterest', 'aiAnxiety', 'lectureInterest', 'workshopTheme', 'notification'];
+            // 加上生日這題
+            let total = requiredKeys.length + 1; 
+            let filled = 0;
 
             requiredKeys.forEach(key => {
-                const inputs = document.querySelectorAll(`input[data-q="${key}"]`);
+                const inputs = document.querySelectorAll(`[data-q="${key}"]`);
                 if (inputs.length === 0) return;
                 const type = inputs[0].type;
                 
@@ -631,10 +509,15 @@
                     const checked = document.querySelector(`input[data-q="${key}"]:checked`);
                     const otherInput = document.querySelector(`input[data-q="${key}_other"]`);
                     if (checked || (otherInput && otherInput.value.trim() !== '')) filled++;
-                } else if (type === 'text' || type === 'tel' || type === 'hidden') {
+                } else if (type === 'text' || type === 'tel' || type === 'hidden' || inputs[0].tagName === 'TEXTAREA') {
                     if (inputs[0].value.trim() !== '') filled++;
                 }
             });
+
+            // 檢查生日是否填寫完整
+            if (document.getElementById('birth-mmdd').value.length === 4 && document.getElementById('input-birth-month').value !== '') {
+                filled++;
+            }
 
             let percentage = total > 0 ? Math.round((filled / total) * 100) : 0;
             if (percentage > 100) percentage = 100;
@@ -664,86 +547,98 @@
         function handleMMDDInput(el) {
             let val = el.value.replace(/\D/g, '');
             el.value = val;
-            const hiddenDate = document.getElementById('input-birthday');
+            const hiddenMonth = document.getElementById('input-birth-month');
+            const hiddenDay = document.getElementById('input-birth-day');
+            
             if (val.length === 4) {
-                const m = parseInt(val.substring(0, 2)), d = parseInt(val.substring(2, 4));
+                const m = parseInt(val.substring(0, 2), 10);
+                const d = parseInt(val.substring(2, 4), 10);
                 const tempDate = new Date(2000, m - 1, d);
+                
+                // 驗證是否為有效的日期
                 if (!(tempDate.getFullYear() === 2000 && tempDate.getMonth() === m - 1 && tempDate.getDate() === d)) {
-                    showToast('請輸入正確月日(例 0520)', 'error');
+                    showToast('請輸入正確月日(例 0314)', 'error');
                     el.classList.add('ring-2', 'ring-red-500', 'border-red-500', 'error-shake');
                     setTimeout(() => el.classList.remove('ring-2', 'ring-red-500', 'border-red-500', 'error-shake'), 1000);
-                    hiddenDate.value = '';
+                    hiddenMonth.value = '';
+                    hiddenDay.value = '';
                 } else {
-                    // 🌟 修正重點在此：我們直接傳送 0314 這個數值，不再轉換成 2000-03-14 避免被 Google 阻擋
-                    hiddenDate.value = val;
+                    hiddenMonth.value = m; // Google 表單接受 "3" 或 "03"
+                    hiddenDay.value = d;
                     el.classList.remove('ring-2', 'ring-red-500', 'border-red-500');
                 }
-            } else { hiddenDate.value = ''; }
+            } else { 
+                hiddenMonth.value = '';
+                hiddenDay.value = '';
+            }
             updateCompletion();
         }
 
         function validateStep(step) {
-            if (step === 1 && !userPsyChoice) { showToast('請選擇一個選項', 'warning'); return false; }
-            if (step === 2) {
+            if (step === 1) {
                 const nameInput = document.getElementById('input-name');
                 if (!nameInput.value.trim()) {
                     nameInput.classList.add('ring-2', 'ring-red-500', 'border-red-500', 'error-shake');
                     setTimeout(() => nameInput.classList.remove('error-shake', 'ring-2', 'ring-red-500', 'border-red-500'), 1000);
                     showToast('請輸入您的名字', 'error'); nameInput.focus(); return false;
                 }
-                if (document.getElementById('birth-mmdd').value.length !== 4 || !document.getElementById('input-birthday').value) {
+                if (document.getElementById('birth-mmdd').value.length !== 4 || !document.getElementById('input-birth-month').value) {
                     document.getElementById('birth-mmdd').classList.add('ring-2', 'ring-red-500', 'border-red-500', 'error-shake');
                     setTimeout(() => document.getElementById('birth-mmdd').classList.remove('error-shake', 'ring-2', 'ring-red-500', 'border-red-500'), 1000);
                     showToast('請完整輸入 4 位數出生月日', 'warning'); return false;
                 }
             }
+            if (step === 2) {
+                if (!document.querySelector('input[data-q="whereToBuy"]:checked') && !document.querySelector('input[data-q="whereToBuy_other"]').value.trim()) { showToast('請選擇平常購物場所', 'warning'); return false; }
+                if (!document.querySelector('input[data-q="shoppingFocus"]:checked') && !document.querySelector('input[data-q="shoppingFocus_other"]').value.trim()) { showToast('請選擇購物最在意的部分', 'warning'); return false; }
+            }
             if (step === 3) {
-                if (!document.querySelector('input[data-q="shopping"]:checked') && !document.querySelector('input[data-q="shopping_other"]').value.trim()) { showToast('請選擇購物場所', 'warning'); return false; }
-                if (!document.querySelector('input[data-q="travelPref"]:checked') && !document.querySelector('input[data-q="travelPref_other"]').value.trim()) { showToast('請選擇旅行偏好', 'warning'); return false; }
-                if (!document.querySelector('input[data-q="travelPlan"]:checked') && !document.querySelector('input[data-q="travelPlan_other"]').value.trim()) { showToast('請選擇旅行規劃方式', 'warning'); return false; }
+                if (!document.querySelector('input[data-q="recentInterest"]:checked') && !document.querySelector('input[data-q="recentInterest_other"]').value.trim()) { showToast('請選擇近期有興趣的生活內容', 'warning'); return false; }
+                if (!document.querySelector('input[data-q="lifeNeeds"]:checked') && !document.querySelector('input[data-q="lifeNeeds_other"]').value.trim()) { showToast('請選擇最近關注的生活需求', 'warning'); return false; }
             }
             if (step === 4) {
-                if (!document.querySelector('input[data-q="health"]:checked') && !document.querySelector('input[data-q="health_other"]').value.trim()) { showToast('請選擇保健需求', 'warning'); return false; }
-                if (!document.querySelector('input[data-q="weight"]:checked') && !document.querySelector('input[data-q="weight_other"]').value.trim()) { showToast('請選擇體重管理需求', 'warning'); return false; }
-            }
-            if (step === 5 && !userDecisionStyle) {
-                const styleGroup = document.getElementById('decision-style-group');
-                styleGroup.classList.add('error-shake'); setTimeout(() => styleGroup.classList.remove('error-shake'), 1000);
-                showToast('請選擇您的消費決策風格', 'warning'); return false;
-            }
-            if (step === 6) {
-                if (!document.querySelector('input[data-q="skin"]:checked')) {
-                    const skinTypeGroup = document.getElementById('skin-type-group');
-                    skinTypeGroup.classList.add('error-shake'); setTimeout(() => skinTypeGroup.classList.remove('error-shake'), 1000);
-                    showToast('請選擇您的肌膚屬性', 'warning'); skinTypeGroup.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false;
+                const fb1 = document.getElementById('feedback-1');
+                const fb2 = document.getElementById('feedback-2');
+                if (!document.querySelector('input[data-q="groupFeel"]:checked')) {
+                    fb1.classList.add('border-error', 'error-shake'); setTimeout(() => fb1.classList.remove('error-shake', 'border-error'), 1500);
+                    showToast('請告訴我您對群組的感受', 'warning'); fb1.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false;
                 }
-                if (!document.querySelector('input[data-q="skincare"]:checked') && !document.querySelector('input[data-q="skincare_other"]').value.trim()) { showToast('請選擇護膚品', 'warning'); return false; }
-                if (!document.querySelector('input[data-q="makeup"]:checked') && !document.querySelector('input[data-q="makeup_other"]').value.trim()) { showToast('請選擇彩妝需求', 'warning'); return false; }
+                if (!document.querySelector('input[data-q="incomeInterest"]:checked')) {
+                    fb2.classList.add('border-error', 'error-shake'); setTimeout(() => fb2.classList.remove('error-shake', 'border-error'), 1500);
+                    showToast('請選擇增加收入可能的意願', 'warning'); fb2.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false;
+                }
             }
-            if (step === 7 && !document.querySelector('input[data-q="baby"]:checked') && !document.querySelector('input[data-q="baby_other"]').value.trim()) { showToast('請選擇嬰幼兒用品需求', 'warning'); return false; }
+            if (step === 5) {
+                const fb3 = document.getElementById('feedback-3');
+                const fb4 = document.getElementById('feedback-4');
+                if (!document.querySelector('input[data-q="aiAnxiety"]:checked')) {
+                    fb3.classList.add('border-error', 'error-shake'); setTimeout(() => fb3.classList.remove('error-shake', 'border-error'), 1500);
+                    showToast('請選擇對 AI 發展的看法', 'warning'); fb3.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false;
+                }
+                if (!document.querySelector('input[data-q="lectureInterest"]:checked')) {
+                    fb4.classList.add('border-error', 'error-shake'); setTimeout(() => fb4.classList.remove('error-shake', 'border-error'), 1500);
+                    showToast('請選擇對實用小講座的意願', 'warning'); fb4.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false;
+                }
+                if (!document.querySelector('input[data-q="workshopTheme"]:checked') && !document.querySelector('input[data-q="workshopTheme_other"]').value.trim()) { 
+                    showToast('請選擇感興趣的工作坊主題', 'warning'); return false; 
+                }
+            }
             return true;
         }
 
         function validateFinalStep() {
-            const feedbackGroups = ['fb1', 'fb2', 'fb3', 'fb4'];
-            let isValid = true; let firstInvalid = null;
-            feedbackGroups.forEach((key, index) => {
-                const checked = document.querySelector(`input[data-q="${key}"]:checked`);
-                const container = document.getElementById(`feedback-${index + 1}`);
-                if (!checked) {
-                    isValid = false; container.classList.add('border-error', 'error-shake');
-                    setTimeout(() => container.classList.remove('error-shake', 'border-error'), 1500);
-                    if (!firstInvalid) firstInvalid = container;
-                }
-            });
-            if (firstInvalid) { firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' }); showToast('請完成所有必填問題', 'warning'); }
-            return isValid;
+            const fb5 = document.getElementById('feedback-5');
+            if (!document.querySelector('input[data-q="notification"]:checked')) {
+                fb5.classList.add('border-error', 'error-shake'); setTimeout(() => fb5.classList.remove('error-shake', 'border-error'), 1500);
+                showToast('請選擇是否可以偶爾提醒您', 'warning'); fb5.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false;
+            }
+            return true;
         }
 
         function changeStep(direction) {
             if (direction === 1 && !validateStep(currentStep)) return;
             if (direction === 1 && currentStep < totalSteps) {
-                const messages = ['太棒了！繼續加油 💪', '做得很好！快完成了 🎉', '很棒！再一點點就好 ✨', '完美！最後一步了 🌟', '即將揭曉結果！🔮'];
+                const messages = ['太棒了！繼續加油 💪', '收到！下一個問題 👇', '很棒！再一下下就好 ✨', '完美！倒數第二步了 🌟', '即將完成！🔮'];
                 if (currentStep <= messages.length) showToast(messages[currentStep - 1], 'success');
             }
             currentStep += direction;
@@ -761,15 +656,14 @@
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>傳送中...';
             btn.disabled = true;
 
-            generateResults(); 
+            generateZodiacResult(); 
 
-            // 🌟 最強大的提交方案：Fetch (AJAX) 確保無縫傳送，排除 Iframe 的干擾
+            // Fetch (AJAX) 背景提交
             const form = document.getElementById('surveyForm');
             const formData = new FormData(form);
             const urlParams = new URLSearchParams();
             
             for (const pair of formData.entries()) {
-                // 剔除空值避免 Google 判斷異常
                 if (pair[1].trim() !== '') {
                     urlParams.append(pair[0], pair[1]);
                 }
@@ -788,13 +682,13 @@
             })
             .catch(err => {
                 console.error('Submit error:', err);
-                // 極少數情況的最後備用方案
+                // 備用方案 iframe
                 submitted = true;
                 form.submit();
                 setTimeout(() => showSuccessModal(), 1500);
             });
 
-            // 絕對保障：確保介面不會卡住
+            // 保險機制：3 秒後強制顯示成功
             setTimeout(() => {
                 if (isSubmitting) showSuccessModal();
             }, 3000);
@@ -803,17 +697,20 @@
         function showSuccessModal() {
             if (!isSubmitting) return;
             document.getElementById('successModal').classList.remove('hidden');
-            localStorage.removeItem('surveyProgress');
+            localStorage.removeItem('surveyProgress2026');
             document.getElementById('surveyForm').reset();
-            currentStep = 1; userPsyChoice = ''; userDecisionStyle = ''; isSubmitting = false;
+            currentStep = 1; isSubmitting = false;
             const btn = document.getElementById('submit-btn');
-            btn.innerHTML = '<i class="fa-solid fa-sparkles mr-2"></i>查看測驗結果'; btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>送出問卷並看運勢'; btn.disabled = false;
             updateUI(); updateCompletion();
         }
 
-        function closeModal() { document.getElementById('successModal').classList.add('hidden'); showToast('感謝您的填寫！期待再次為您服務 😊', 'success'); }
+        function closeModal() { 
+            document.getElementById('successModal').classList.add('hidden'); 
+            showToast('感謝您的填寫！大仁哥期待與您交流 😊', 'success'); 
+        }
 
-        // ============ 星座與測驗邏輯 ============
+        // ============ 星座運勢邏輯 ============
         function getZodiacInfo(month, day) {
             const m = parseInt(month), d = parseInt(day);
             if ((m === 3 && d >= 21) || (m === 4 && d <= 19)) return { id: 'aries', name: '牡羊座', icon: '♈' };
@@ -846,59 +743,23 @@
                 'aquarius': "2026 年水瓶座迎來「扎根安頓年」。重心回歸家庭與私人空間。無論是搬家、裝潢還是為家裡添購舒適的家具寢具，打造一個讓自己完全放鬆的避風港是今年的消費核心。",
                 'pisces': "2026 年是雙魚座的「學習交流年」！您的思緒活躍，對新資訊充滿好奇。適合購買最新的3C科技產品、書籍或是參加各種線上線下課程。保持接收新知的狀態能為您帶來好運。"
             };
-            return horoscopes[zodiacId] || "2026 年將是充滿驚喜與好運的一年，順從您的直覺，享受美好的購物體驗吧！";
+            return horoscopes[zodiacId] || "2026 年將是充滿驚喜與好運的一年，順從您的直覺，享受美好的購物與學習體驗吧！";
         }
 
-        function getCombinedZodiacInsight(style, zodiacName) {
-            if (style === 'impulse') return `🛒 融合建議：${zodiacName}的您雖然行動力強，今年若能將這股衝勁用在投資「能長期保值」的好物上，會更有成就感喔！`;
-            if (style === 'rational') return `🛒 融合建議：理性的${zodiacName}，今年買東西精打細算是好習慣，但偶爾允許自己為「純粹的快樂」買單，會讓運勢更旺！`;
-            if (style === 'social')   return `🛒 融合建議：重視評價的${zodiacName}，今年適合在社群中發掘小眾好物，您甚至有潛力成為帶動朋友圈購物風潮的領袖！`;
-            if (style === 'patient')  return `🛒 融合建議：充滿耐心的${zodiacName}，您等待的好價格終會出現。但若是遇到真心喜歡的「限量體驗」，今年不妨大膽出手一次！`;
-            return '';
-        }
-
-        function getPsyText(type) {
-            const results = {
-                'visual': '您是「視覺系鑑賞家」！✨\n\n對美感有極高要求，喜歡有質感、包裝精美的商品。在 2026 年，不妨多添購一些能提升居家氛圍的裝飾或高顏值家電，會讓您心情大好。',
-                'auditory': '您是「社交型體驗者」！🎵\n\n比起商品本身，您更在意人與人的互動氛圍。適合參加團購或與朋友一起分享好物。2026 年適合多安排聚會或旅行，創造美好回憶。',
-                'olfactory': '您是「氛圍感營造者」！🌸\n\n對氣味和環境細節非常敏感，重視身心靈的放鬆。香氛、精油或舒適的寢具是您的開運好物。',
-                'price': '您是「精明理財家」！💰\n\n理性務實，最擅長找出高 CP 值的寶藏。2026 年您的財運不錯，適合透過精準消費來為自己累積更多財富。'
-            };
-            return results[type] || '您是「隨性生活家」！🎨\n\n不被特定框架束縛，喜歡自在地探索。新的一年，試著嘗試一些平常不會買的小物，或許會有意外驚喜！';
-        }
-
-        function getDecisionStyleText(style) {
-            const styles = {
-                'impulse': { title: '🔥 衝動型決策者', desc: '您是行動派！看到喜歡的就想立刻擁有，相信直覺。', advice: '提醒：衝動購物雖然爽快，但建議設定每月「隨心購物金」額度，讓自己開心消費的同時也顧好荷包。' },
-                'rational': { title: '🔍 理性型決策者', desc: '您是比價達人！做足功課、貨比三家才會出手，非常注重 CP 值。', advice: '提醒：您的謹慎很棒！但有時候太多比較反而讓自己疲累，對於小額商品可以試著放寬標準。' },
-                'social': { title: '👥 社交型決策者', desc: '您重視口碑！朋友推薦或網紅評價對您影響很大，喜歡團購的氛圍。', advice: '提醒：適合參加團購活動或加入購物社群。但也要培養獨立判斷力，別人適合的不一定適合您。' },
-                'patient': { title: '⏳ 耐心型決策者', desc: '您是等待高手！相信好東西值得等，常常等到打折或更好的選擇才出手。', advice: '提醒：您的耐心絕對是省錢利器！但有時候「早買早享受」也是一種幸福，別讓等待變成遺憾。' }
-            };
-            return styles[style] || { title: '', desc: '', advice: '' };
-        }
-
-        function generateResults() {
-            document.getElementById('result-psy').innerText = getPsyText(userPsyChoice);
-            const decisionStyleSection = document.getElementById('decision-style-section');
-            if (userDecisionStyle) {
-                decisionStyleSection.style.display = 'block';
-                const styleData = getDecisionStyleText(userDecisionStyle);
-                document.getElementById('result-decision-title').innerText = styleData.title;
-                document.getElementById('result-decision-desc').innerText = styleData.desc;
-                document.getElementById('result-decision-advice').innerText = styleData.advice;
-            } else { decisionStyleSection.style.display = 'none'; }
-
+        function generateZodiacResult() {
             const mmddValue = document.getElementById('birth-mmdd').value;
             const zodiacSection = document.getElementById('zodiac-section');
             if (mmddValue && mmddValue.length === 4) {
                 zodiacSection.style.display = 'block';
                 const zodiac = getZodiacInfo(mmddValue.substring(0, 2), mmddValue.substring(2, 4));
                 if (zodiac) {
-                    document.getElementById('zodiac-icon').innerText = zodiac.icon; document.getElementById('zodiac-title').innerText = zodiac.name;
-                    document.getElementById('result-zodiac-personality').innerText = userDecisionStyle ? getCombinedZodiacInsight(userDecisionStyle, zodiac.name) : "";
+                    document.getElementById('zodiac-icon').innerText = zodiac.icon; 
+                    document.getElementById('zodiac-title').innerText = zodiac.name;
                     document.getElementById('result-zodiac-horoscope').innerText = getZodiacHoroscope2026(zodiac.id);
                 }
-            } else { zodiacSection.style.display = 'none'; }
+            } else { 
+                zodiacSection.style.display = 'none'; 
+            }
         }
     </script>
 </body>
